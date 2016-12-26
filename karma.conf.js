@@ -3,7 +3,7 @@
 
 module.exports = function (config) {
   config.set({
-    basePath: 'poulzinho),
+    basePath: '',
     frameworks: ['jasmine', 'angular-cli'],
     plugins: [
       require('karma-jasmine'),
