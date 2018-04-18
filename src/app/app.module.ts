@@ -3,11 +3,16 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {RouterModule, Routes} from '@angular/router';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
+import {AngularFireAuthModule} from 'angularfire2/auth';
+import {environment} from '../environments/environment';
 
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
+import {CoursesListComponent} from './courses-list/courses-list.component';
 
-const appRoutes:Routes = [
+const appRoutes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
@@ -17,20 +22,30 @@ const appRoutes:Routes = [
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
-  }//,
-  //{path: '**', component: PageNotFoundComponent}
+  },
+  {
+    path: 'test',
+    component: CoursesListComponent,
+    data: {title: 'Test'}
+  }
+  // ,
+  // {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    CoursesListComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
