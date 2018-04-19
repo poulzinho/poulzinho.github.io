@@ -24,14 +24,14 @@ import {CoursesListComponent} from './courses-list/courses-list.component';
 
 const appRoutes: Routes = [
   {
-    path: 'home',
-    component: HomeComponent,
-    data: {title: 'Home'}
-  },
-  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    data: {title: 'Home'}
   },
   {
     path: 'test',
