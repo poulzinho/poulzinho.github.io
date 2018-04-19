@@ -1,10 +1,43 @@
-<h1>
-  Welcome to my {{title}}
-</h1>
-<h2>
-  ng2 rocks!
-</h2>
-<nav>
-  <a routerLink="/home" routerLinkActive="active">Home</a>
-</nav>
-<router-outlet></router-outlet>
+<mat-toolbar fxFlex="90px" color="primary" class="navbar">
+
+  <button mat-button fxHide="false" fxHide.gt-sm (click)="manageMenu()">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+  <button mat-button routerLink="/">
+    {{title}}
+  </button>
+
+</mat-toolbar>
+
+<div fxLayout="column" [fxShow]="showMenu" fxHide.gt-sm class="sidebar-over" (click)="manageMenu()">
+  <button mat-button routerLink="/home" routerLinkActive="active">
+    <mat-icon>home</mat-icon>
+    <span>Home</span>
+  </button>
+  <button mat-button routerLink="/test">
+    <mat-icon>voicemail</mat-icon>
+    <span>Test</span>
+  </button>
+</div>
+
+<div fxFlex fxLayout="row">
+  <div fxFlex="250px" fxLayout="column" fxShow="false" fxShow.gt-sm class="sidebar">
+    <button mat-button routerLink="/home" routerLinkActive="active">
+      <mat-icon>home</mat-icon>
+      <span>Home</span>
+    </button>
+    <button mat-button routerLink="/test">
+      <mat-icon>voicemail</mat-icon>
+      <span>Test</span>
+    </button>
+  </div>
+  <div fxFlex fxLayout="column" fxLayoutAlign="space-between stretch" class="scrollable">
+    <router-outlet fxFlex="0px" fxShow="false"></router-outlet>
+    <mat-toolbar fxFlex="90px">
+      Footer
+    </mat-toolbar>
+  </div>
+</div>
+
+
