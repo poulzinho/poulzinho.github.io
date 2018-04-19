@@ -6,7 +6,6 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public title = 'Gualotuna.com';
   public showMenu = false;
 
   public manageMenu() {

@@ -1,11 +1,13 @@
-<mat-toolbar fxFlex="90px" color="primary" class="navbar">
+<mat-toolbar fxFlex="90px" color="primary" class="navbar" fxLayout="row" fxLayoutAlign="space-between stretch">
 
-  <button mat-button fxHide="false" fxHide.gt-sm (click)="manageMenu()">
+  <a fxFlex="300px" fxLayout="row" fxLayoutAlign="center center" routerLink="/" class="logo">
+    <div fxFlex="20" class="isotype"></div>
+    <div fxFlex="55" class="logotype">
+      <span class="name">PAUL E.</span> GUALOTUÑA </div>
+  </a>
+
+  <button fxFlex="80px" mat-button fxHide="false" fxHide.gt-sm (click)="manageMenu()">
     <mat-icon>more_vert</mat-icon>
-  </button>
-
-  <button mat-button routerLink="/">
-    {{title}}
   </button>
 
 </mat-toolbar>
