@@ -7,13 +7,17 @@ html, body, app-root {
   color: #FFFFFF;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: -webkit-linear-gradient(right, #243B55, #141E30);
+  background: linear-gradient(to left, #243B55, #141E30);
+}
+
+body, app-root {
+  overflow: hidden;
 }
 
 app-root {
   display: flex;
   flex-direction: column;
-  background: -webkit-linear-gradient(right, #243B55, #141E30);
-  background: linear-gradient(to left, #243B55, #141E30);
 }
 
 .scrollable {

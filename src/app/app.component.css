@@ -17,6 +17,7 @@
 
 .sidebar, .sidebar-over {
   background: #1F2437;
+  background: rgb(11, 58, 89);
 }
 
 .sidebar-over {
@@ -63,3 +64,12 @@
   font-weight: lighter;
   font-size: 19px;
 }
+
+.avatar {
+  margin: 20px;
+  width: 150px !important;
+  height: 150px;
+  background: url("https://www.gravatar.com/avatar/e15f38c87ccf3ddfb487a1abd6ec1985?s=150") no-repeat;
+  border-radius: 50%;
+}
+

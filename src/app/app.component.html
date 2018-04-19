@@ -24,8 +24,11 @@
   </button>
 </div>
 
-<div fxFlex fxLayout="row">
-  <div fxFlex="300px" fxLayout="column" fxShow="false" fxShow.gt-sm class="sidebar">
+<div fxFlex fxLayout="row" fxLayoutAlign="center stretch">
+  <div fxFlex="300px" fxLayout="column" fxLayoutAlign="start center" fxShow="false" fxShow.gt-sm class="sidebar">
+    <div>
+      <div class="avatar"></div>
+    </div>
     <button mat-button routerLink="/home" routerLinkActive="active">
       <mat-icon>home</mat-icon>
       <span>Home</span>
