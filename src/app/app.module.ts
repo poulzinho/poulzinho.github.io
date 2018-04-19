@@ -11,10 +11,12 @@ import {environment} from '../environments/environment';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {
   MatButtonModule,
+  MatCardModule,
   MatCheckboxModule,
   MatIconModule,
   MatMenuModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatGridListModule
 } from '@angular/material';
 
 
@@ -25,8 +27,8 @@ import {CoursesListComponent} from './courses-list/courses-list.component';
 const appRoutes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     redirectTo: 'home',
-    pathMatch: 'full'
   },
   {
     path: 'home',
@@ -58,10 +60,12 @@ const appRoutes: Routes = [
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     MatButtonModule,
+    MatCardModule,
     MatCheckboxModule,
     MatIconModule,
     MatMenuModule,
     MatToolbarModule,
+    MatGridListModule,
     FlexLayoutModule
   ],
   providers: [],

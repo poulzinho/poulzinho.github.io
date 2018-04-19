@@ -4,7 +4,7 @@ html, body, app-root {
   height: 100%;
   margin: 0;
   font-family: 'Roboto', sans-serif;
-  color: #001100;
+  color: #FFFFFF;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -12,6 +12,8 @@ html, body, app-root {
 app-root {
   display: flex;
   flex-direction: column;
+  background: -webkit-linear-gradient(right, #243B55, #141E30);
+  background: linear-gradient(to left, #243B55, #141E30);
 }
 
 .scrollable {

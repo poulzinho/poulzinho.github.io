@@ -11,10 +11,12 @@
   z-index: 1001;
   margin: 0;
   padding: 0;
+  background: rgb(11, 58, 89);
+  background: rgba(11, 58, 89, .3);
 }
 
 .sidebar, .sidebar-over {
-  background: #CCC;
+  background: #1F2437;
 }
 
 .sidebar-over {
@@ -24,6 +26,12 @@
   width: 100%;
   height: 100%;
   z-index: 1000;
+}
+
+.footer {
+  color: white;
+  background: rgb(11, 58, 89);
+  background: rgba(11, 58, 89, .5);
 }
 
 .isotype {
@@ -42,7 +50,7 @@
   color: #FFFFFF;
   font-family: 'Roboto', sans-serif;
   letter-spacing: 1px;
-  margin-left: 5px;
+  margin-left: 15px;
   font-weight: bolder;
   font-size: 19px;
 }
@@ -52,7 +60,6 @@
   color: #CCCCCC;
   font-family: 'Exo', sans-serif;
   letter-spacing: 1px;
-  margin-left: 5px;
   font-weight: lighter;
   font-size: 19px;
 }
