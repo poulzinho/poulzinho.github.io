@@ -1,119 +1,461 @@
-<mat-card class="simple-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
-  <mat-card-content>
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-      bred for hunting.
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
-</mat-card>
+<gridster [options]="options">
 
-<mat-card class="simple-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
-  <mat-card-content>
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-      bred for hunting.
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
-</mat-card>
+  <gridster-item [item]="{cols: 5, rows: 10, y: 0, x: 1, resizeEnabled: true}">
+    <mat-card fxFill fxLayout="column" fxLayoutAlign="space-between stretch">
+      <div class="blend-blue mat-card-header-photo">
+        <img src="assets/img/paul.jpg">
+      </div>
+      <div fxFlex="0" class="mat-card-header-photo-name">
+        <p class="photo-name">About me</p>
+      </div>
+      <mat-card-content fxFlex>
+        <mat-tab-group fxFill>
+          <mat-tab label="Personal Data">
+            <form fxFlex fxLayout="column" fxLayoutAlign="start stretch">
+              <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon fxFlex="50px">face</mat-icon>
+                <mat-form-field fxFlex="85">
+                  <input matInput placeholder="Fullname" [value]="personalData.fullname" [readonly]="true">
+                </mat-form-field>
+              </div>
+              <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon fxFlex="50px">date_range</mat-icon>
+                <mat-form-field fxFlex="85">
+                  <input matInput placeholder="Birthdate" [value]="personalData.birthdate | date : format : timezone"
+                         [readonly]="true">
+                </mat-form-field>
+              </div>
+              <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon fxFlex="50px">flag</mat-icon>
+                <mat-form-field fxFlex="85">
+                  <input matInput placeholder="Nationality" [value]="personalData.nationality" [readonly]="true">
+                </mat-form-field>
+              </div>
+              <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon fxFlex="50px">outlined_flag</mat-icon>
+                <mat-form-field fxFlex="85">
+                  <input matInput placeholder="Place of birth" [value]="personalData.placeOfBirth" [readonly]="true">
+                </mat-form-field>
+              </div>
+              <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon fxFlex="50px">location_city</mat-icon>
+                <mat-form-field fxFlex="85">
+                  <input matInput placeholder="Place of residence" [value]="personalData.placeOfResidence"
+                         [readonly]="true">
+                </mat-form-field>
+              </div>
+              <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon fxFlex="50px">person</mat-icon>
+                <mat-form-field fxFlex="85">
+                  <input matInput placeholder="Gender" [value]="personalData.gender" [readonly]="true">
+                </mat-form-field>
+              </div>
+              <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon fxFlex="50px">favorite_border</mat-icon>
+                <mat-form-field fxFlex="85">
+                  <input matInput placeholder="Marital status" [value]="personalData.maritalStatus" [readonly]="true">
+                </mat-form-field>
+              </div>
+            </form>
+          </mat-tab>
+          <mat-tab label="Contact">
+            <form fxFlex fxLayout="column" fxLayoutAlign="start stretch">
+              <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon fxFlex="50px">email</mat-icon>
+                <mat-form-field fxFlex="85">
+                  <input matInput placeholder="Email" [value]="contactInfo.emailString" [readonly]="true">
+                </mat-form-field>
+              </div>
+              <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon fxFlex="50px">mobile_friendly</mat-icon>
+                <mat-form-field fxFlex="85">
+                  <input matInput placeholder="Mobile phone" [value]="contactInfo.mobilePhone"
+                         [readonly]="true">
+                </mat-form-field>
+              </div>
+            </form>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card-content>
+      <mat-card-actions fxFlex="50px" fxLayout="row" fxLayoutAlign="center center">
+        <a mat-button [href]="'mailto:' + contactInfo.email" data-rel="external">
+          <mat-icon fxFlex="50px">email</mat-icon>
+          EMAIL
+        </a>
+        <a mat-button [href]="'tel:' + contactInfo.phone" data-rel="external" target="_blank">
+          <mat-icon fxFlex="50px" fontSet="fab" fontIcon="fa-whatsapp"></mat-icon>
+          WHATSAPP
+        </a>
+      </mat-card-actions>
+    </mat-card>
+  </gridster-item>
 
-<mat-card class="simple-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
-  <mat-card-content>
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-      bred for hunting.
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
-</mat-card>
+  <gridster-item [item]="{cols: 6, rows: 10, y: 0, x: 0, resizeEnabled: true}">
+    <mat-card fxFill fxLayout="column" fxLayoutAlign="space-between stretch">
+      <div class="blend-blue mat-card-header-photo">
+        <img src="assets/img/education.jpg">
+      </div>
+      <div fxFlex="0" class="mat-card-header-photo-name">
+        <p class="photo-name">Education</p>
+      </div>
+      <mat-card-content fxFlex>
 
-<mat-card class="simple-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
-  <mat-card-content>
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-      bred for hunting.
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
-</mat-card>
+        <mat-tab-group fxFill>
+          <mat-tab label="Academic">
 
-<mat-card class="simple-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
-  <mat-card-content>
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-      bred for hunting.
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
-</mat-card>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header>
+                  <mat-panel-title fxFlex="40">
+                    2015 - present
+                  </mat-panel-title>
+                  <mat-panel-description fxFlex>
+                    MSc. Informatics
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div fxFlex fxLayout="column">
+                  <h3>{{tumInfo.university}}</h3>
 
-<mat-card class="simple-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
-  <mat-card-content>
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-      bred for hunting.
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
-</mat-card>
+                  <div fxFlex fxLayout="row" fxLayoutAlign="center center">
+                    <div fxFlex="40" class="accordion-logos" fxLayout="row" fxLayoutAlign="center center">
+                      <img fxFill src="assets/img/TUM.svg" alt="TUM logo">
+                    </div>
+                    <form fxFlex fxLayout="column" fxLayoutAlign="start stretch">
+                      <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                        <mat-form-field fxFlex="90">
+                          <input matInput placeholder="Department" [value]="tumInfo.faculty" [readonly]="true">
+                        </mat-form-field>
+                      </div>
+                      <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                        <mat-form-field fxFlex="90">
+                          <input matInput placeholder="Place" [value]="tumInfo.place" [readonly]="true">
+                        </mat-form-field>
+                      </div>
+                      <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                        <mat-form-field fxFlex="90">
+                          <input matInput placeholder="Major" [value]="tumInfo.major" [readonly]="true">
+                        </mat-form-field>
+                      </div>
+                      <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                        <mat-form-field fxFlex="90">
+                          <input matInput placeholder="Minor" [value]="tumInfo.minor" [readonly]="true">
+                        </mat-form-field>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+              </mat-expansion-panel>
+
+
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title fxFlex="40">
+                    2006 - 2013
+                  </mat-panel-title>
+                  <mat-panel-description fxFlex>
+                    Eng. Information Systems
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <div fxFlex fxLayout="column">
+                  <h3>{{epnInfo.university}}</h3>
+
+                  <div fxFlex fxLayout="row" fxLayoutAlign="center center">
+                    <div fxFlex="40" class="accordion-logos" fxLayout="row" fxLayoutAlign="center center">
+                      <img fxFill src="assets/img/EPN.png" alt="EPN logo">
+                    </div>
+                    <form fxFlex fxLayout="column" fxLayoutAlign="start stretch">
+                      <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                        <mat-form-field fxFlex="90">
+                          <input matInput placeholder="Department" [value]="epnInfo.faculty" [readonly]="true">
+                        </mat-form-field>
+                      </div>
+                      <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                        <mat-form-field fxFlex="90">
+                          <input matInput placeholder="Place" [value]="epnInfo.place" [readonly]="true">
+                        </mat-form-field>
+                      </div>
+                      <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                        <mat-form-field fxFlex="90">
+                          <input matInput placeholder="Major" [value]="epnInfo.major" [readonly]="true">
+                        </mat-form-field>
+                      </div>
+                      <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                        <mat-form-field fxFlex="90">
+                          <input matInput placeholder="Minor" [value]="epnInfo.minor" [readonly]="true">
+                        </mat-form-field>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+              </mat-expansion-panel>
+            </mat-accordion>
+
+          </mat-tab>
+          <mat-tab label="Languages">
+            <div class="demo-tab-content">
+
+              <form fxFlex fxLayout="column" fxLayoutAlign="start stretch">
+                <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+                  <img class="lang-flags" fxFlex="50px" src="assets/img/spain.svg">
+                  <mat-form-field fxFlex="85">
+                    <input matInput placeholder="Spanish" [value]="langs.spanish" [readonly]="true">
+                  </mat-form-field>
+                </div>
+                <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                  <img class="lang-flags" fxFlex="50px" src="assets/img/united-kingdom.svg">
+                  <mat-form-field fxFlex="85">
+                    <input matInput placeholder="English" [value]="langs.english" [readonly]="true">
+                  </mat-form-field>
+                </div>
+                <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                  <img class="lang-flags" fxFlex="50px" src="assets/img/germany.svg">
+                  <mat-form-field fxFlex="85">
+                    <input matInput placeholder="German" [value]="langs.german" [readonly]="true">
+                  </mat-form-field>
+                </div>
+              </form>
+
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card-content>
+      <mat-card-actions fxFlex="50px" fxLayout="row" fxLayoutAlign="center center">
+        <a mat-button [href]="contactInfo.facebook" data-rel="external" target="_blank">
+          <mat-icon fxFlex="50px" fontSet="fab" fontIcon="fa-facebook-square"></mat-icon>
+          FACEBOOK
+        </a>
+      </mat-card-actions>
+    </mat-card>
+  </gridster-item>
+
+  <gridster-item [item]="{cols: 6, rows: 10, y: 0, x: 0, resizeEnabled: true}">
+    <mat-card fxFill fxLayout="column" fxLayoutAlign="space-between stretch">
+      <div class="blend-blue mat-card-header-photo" fxLayout="row" fxLayoutAlign="center stretch">
+        <canvas width="230" height="300" id="mainCanvas" class="img" #mainCanvas></canvas>
+      </div>
+      <div fxFlex="0" class="mat-card-header-photo-name">
+        <p class="photo-name">Jobs</p>
+      </div>
+      <mat-card-content fxFlex>
+        <mat-tab-group fxFill #myTabGroup>
+          <mat-tab label="Germany">
+
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header fxFlex fxLayout="row">
+                  <mat-panel-title fxFlex="40">
+                    {{jobs.netlight.dates}}
+                  </mat-panel-title>
+                  <mat-panel-description fxFlex>
+                    {{jobs.netlight.position}}
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div fxFlex fxLayout="column">
+                  <h3>{{jobs.netlight.company}}</h3>
+
+                  <div fxFlex fxLayout="row" fxLayoutAlign="center center">
+                    <div fxFlex="40" class="accordion-logos" fxLayout="row" fxLayoutAlign="center center">
+                      <img fxFill src="assets/img/netlight.png" alt="Netlight logo">
+                    </div>
+                    <form fxFlex fxLayout="column" fxLayoutAlign="start stretch">
+                      <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                        <mat-form-field fxFlex="90">
+                          <input matInput placeholder="Place" [value]="jobs.netlight.place" [readonly]="true">
+                        </mat-form-field>
+                      </div>
+                      <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                        <mat-form-field fxFlex="90">
+                          <textarea matInput placeholder="Description" [value]="jobs.netlight.description"
+                                    [readonly]="true" mat-autosize>
+                          </textarea>
+                        </mat-form-field>
+                      </div>
+                      <mat-chip-list fxFill>
+                        <mat-chip *ngFor="let chip of jobs.netlight.tech">{{chip}}</mat-chip>
+                      </mat-chip-list>
+                    </form>
+                  </div>
+                </div>
+
+              </mat-expansion-panel>
+
+
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title fxFlex="40">
+                    {{jobs.TUM.dates}}
+                  </mat-panel-title>
+                  <mat-panel-description fxFlex>
+                    {{jobs.TUM.position}}
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <div fxFlex fxLayout="column">
+                  <h3>{{jobs.TUM.company}}</h3>
+
+                  <div fxFlex fxLayout="row" fxLayoutAlign="center center">
+                    <div fxFlex="40" class="accordion-logos" fxLayout="row" fxLayoutAlign="center center">
+                      <img fxFill src="assets/img/TUM.svg" alt="TUM logo">
+                    </div>
+                    <form fxFlex fxLayout="column" fxLayoutAlign="start stretch">
+                      <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                        <mat-form-field fxFlex="90">
+                          <input matInput placeholder="Place" [value]="jobs.TUM.place" [readonly]="true">
+                        </mat-form-field>
+                      </div>
+                      <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                        <mat-form-field fxFlex="90">
+                          <textarea matInput placeholder="Description" [value]="jobs.TUM.description" [readonly]="true"
+                                    mat-autosize>
+                          </textarea>
+                        </mat-form-field>
+                      </div>
+                      <mat-chip-list fxFill>
+                        <mat-chip *ngFor="let chip of jobs.TUM.tech">{{chip}}</mat-chip>
+                      </mat-chip-list>
+                    </form>
+                  </div>
+                </div>
+
+              </mat-expansion-panel>
+            </mat-accordion>
+
+          </mat-tab>
+
+          <mat-tab label="Ecuador">
+
+            <mat-accordion *ngIf="myTabGroup.selectedIndex == 1">
+              <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header fxFlex fxLayout="row">
+                  <mat-panel-title fxFlex="40">
+                    {{jobs.EPN.dates}}
+                  </mat-panel-title>
+                  <mat-panel-description fxFlex>
+                    {{jobs.EPN.position}}
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div fxFlex fxLayout="column">
+                  <h3>{{jobs.EPN.company}}</h3>
+
+                  <div fxFlex fxLayout="row" fxLayoutAlign="center center">
+                    <div fxFlex="40" class="accordion-logos" fxLayout="row" fxLayoutAlign="center center">
+                      <img fxFill src="assets/img/EPN.png" alt="EPN logo">
+                    </div>
+                    <form fxFlex fxLayout="column" fxLayoutAlign="start stretch">
+                      <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                        <mat-form-field fxFlex="90">
+                          <input matInput placeholder="Place" [value]="jobs.EPN.place" [readonly]="true">
+                        </mat-form-field>
+                      </div>
+                      <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                        <mat-form-field fxFlex="90">
+                          <textarea matInput placeholder="Description" [value]="jobs.EPN.description"
+                                    [readonly]="true" mat-autosize>
+                          </textarea>
+                        </mat-form-field>
+                      </div>
+                      <mat-chip-list fxFill>
+                        <mat-chip *ngFor="let chip of jobs.EPN.tech">{{chip}}</mat-chip>
+                      </mat-chip-list>
+                    </form>
+                  </div>
+                </div>
+
+              </mat-expansion-panel>
+
+
+              <mat-expansion-panel>
+                <mat-expansion-panel-header fxFlex>
+                  <mat-panel-title fxFlex="40">
+                    {{jobs.WFT.dates}}
+                  </mat-panel-title>
+                  <mat-panel-description fxFlex>
+                    {{jobs.WFT.position}}
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <div fxFlex fxLayout="column">
+                  <h3>{{jobs.WFT.company}}</h3>
+
+                  <div fxFlex fxLayout="row" fxLayoutAlign="center center">
+                    <div fxFlex="40" class="accordion-logos" fxLayout="row" fxLayoutAlign="center center">
+                      <img fxFill src="assets/img/WFT.png" alt="WFT logo">
+                    </div>
+                    <form fxFlex fxLayout="column" fxLayoutAlign="start stretch">
+                      <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                        <mat-form-field fxFlex="90">
+                          <input matInput placeholder="Place" [value]="jobs.WFT.place" [readonly]="true">
+                        </mat-form-field>
+                      </div>
+                      <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                        <mat-form-field fxFlex="90">
+                          <textarea matInput placeholder="Description" [value]="jobs.WFT.description" [readonly]="true"
+                                    mat-autosize="">
+                          </textarea>
+                        </mat-form-field>
+                      </div>
+                      <mat-chip-list fxFill>
+                        <mat-chip *ngFor="let chip of jobs.WFT.tech">{{chip}}</mat-chip>
+                      </mat-chip-list>
+                    </form>
+                  </div>
+                </div>
+
+              </mat-expansion-panel>
+
+              <mat-expansion-panel>
+                <mat-expansion-panel-header fxFlex>
+                  <mat-panel-title fxFlex="40">
+                    {{jobs.insumedical.dates}}
+                  </mat-panel-title>
+                  <mat-panel-description fxFlex>
+                    {{jobs.insumedical.position}}
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <div fxFlex fxLayout="column">
+                  <h3>{{jobs.insumedical.company}}</h3>
+
+                  <div fxFlex fxLayout="row" fxLayoutAlign="center center">
+                    <div fxFlex="40" class="accordion-logos" fxLayout="row" fxLayoutAlign="center center">
+                      <img fxFill src="assets/img/insumedical.svg" alt="Insumedical logo">
+                    </div>
+                    <form fxFlex fxLayout="column" fxLayoutAlign="start stretch">
+                      <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                        <mat-form-field fxFlex="90">
+                          <input matInput placeholder="Place" [value]="jobs.insumedical.place" [readonly]="true">
+                        </mat-form-field>
+                      </div>
+                      <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+                        <mat-form-field fxFlex="90">
+                          <textarea matInput placeholder="Description" [value]="jobs.insumedical.description"
+                                    [readonly]="true" mat-autosize>
+                          </textarea>
+                        </mat-form-field>
+                      </div>
+                      <mat-chip-list fxFill>
+                        <mat-chip *ngFor="let chip of jobs.insumedical.tech">{{chip}}</mat-chip>
+                      </mat-chip-list>
+                    </form>
+                  </div>
+                </div>
+
+              </mat-expansion-panel>
+            </mat-accordion>
+
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card-content>
+      <mat-card-actions fxFlex="50px" fxLayout="row" fxLayoutAlign="center center">
+        <a mat-button [href]="contactInfo.linkedin" data-rel="external" target="_blank">
+          <mat-icon fxFlex="50px" fontSet="fab" fontIcon="fa-linkedin"></mat-icon>
+          LINKEDIN
+        </a>
+      </mat-card-actions>
+    </mat-card>
+  </gridster-item>
+
+</gridster>

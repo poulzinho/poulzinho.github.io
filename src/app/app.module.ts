@@ -13,12 +13,24 @@ import {
   MatButtonModule,
   MatCardModule,
   MatCheckboxModule,
+  MatChipsModule,
+  MatExpansionModule,
+  MatFormFieldModule,
+  MatInputModule,
   MatIconModule,
+  MatIconRegistry,
   MatMenuModule,
+  MatNativeDateModule,
+  MatTabsModule,
   MatToolbarModule,
   MatGridListModule
 } from '@angular/material';
+import {NvD3Module} from 'ng2-nvd3';
+import 'd3';
+import 'nvd3';
+import 'assets/js/WatchStyleKit.js';
 
+import {GridsterModule} from 'angular-gridster2';
 
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
@@ -62,14 +74,27 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
+    MatChipsModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatIconModule,
     MatMenuModule,
+    MatNativeDateModule,
+    MatTabsModule,
     MatToolbarModule,
     MatGridListModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NvD3Module,
+    GridsterModule,
   ],
-  providers: [],
+  providers: [
+    MatIconRegistry
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor(public matIconRegistry: MatIconRegistry) {
+    matIconRegistry.registerFontClassAlias('fontawesome', 'fa');
+  }
 }

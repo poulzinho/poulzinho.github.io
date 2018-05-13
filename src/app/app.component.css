@@ -11,22 +11,24 @@
   z-index: 1001;
   margin: 0;
   padding: 0;
-  background: rgb(11, 58, 89);
-  background: rgba(11, 58, 89, .3);
+  background: #0066BF;
 }
 
 .sidebar, .sidebar-over {
-  background: #1F2437;
-  background: rgb(11, 58, 89);
+  padding: 10px;
+  color: RGBA(255, 255, 255, 0.6);
+  background: #0066BF; /* Old browsers */
 }
 
 .sidebar-over {
+  margin-top: 90px;
   position: absolute;
   top: 0px;
-  padding-top: 90px;
   width: 100%;
   height: 100%;
   z-index: 1000;
+  color: RGBA(255, 255, 255, 0.6);
+  background: #0066BF; /* Old browsers */
 }
 
 .footer {
@@ -36,10 +38,11 @@
 }
 
 .isotype {
-  background-color: #FFFFFF;
+  background-color: #FFF;
   -webkit-mask: url(../assets/img/gualotuna-logo.svg) no-repeat center;
   mask: url(../assets/img/gualotuna-logo.svg) no-repeat center;
-  height: 60px;
+  height: 50px;
+  width: 50px;
 }
 
 .logo {
@@ -48,8 +51,8 @@
 
 .logotype {
   cursor: pointer;
-  color: #FFFFFF;
-  font-family: 'Roboto', sans-serif;
+  color: #FFF;
+  font-family: 'Exo','Roboto', sans-serif;
   letter-spacing: 1px;
   margin-left: 15px;
   font-weight: bolder;
@@ -58,7 +61,7 @@
 
 .logotype .name {
   cursor: pointer;
-  color: #CCCCCC;
+  color: white;
   font-family: 'Exo', sans-serif;
   letter-spacing: 1px;
   font-weight: lighter;
@@ -66,10 +69,34 @@
 }
 
 .avatar {
-  margin: 20px;
-  width: 150px !important;
-  height: 150px;
-  background: url("https://www.gravatar.com/avatar/e15f38c87ccf3ddfb487a1abd6ec1985?s=150") no-repeat;
+  width: 200px !important;
+  height: 200px;
+  background: url("https://www.gravatar.com/avatar/e15f38c87ccf3ddfb487a1abd6ec1985?s=200") no-repeat;
   border-radius: 50%;
 }
 
+.green {
+  background-color: #47FF95;
+  border-radius: 50%;
+  margin: 20px;
+}
+
+.green div {
+  filter: grayscale(200%) contrast(2);
+  mix-blend-mode: darken;
+}
+
+.column::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all ease-in-out .5s;
+}
+
+.green::after {
+  background-color: #0A3D79;
+  mix-blend-mode: lighten;
+}

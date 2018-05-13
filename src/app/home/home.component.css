@@ -1,54 +1,14 @@
 :host {
   width: 100%;
+  height: 100%;
   text-align: center;
 }
 
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
+#mainCanvas {
+  margin-top: 40px;
+  width: 100%;
 }
 
-.simple-card {
-  display: inline-block !important;
-  width: 28%;
-  vertical-align: top;
-  cursor: pointer;
-  margin: 10px 0px 0px 10px;
-}
-
-@media (max-width: 1500px) {
-  .simple-card {
-    display: inline-block !important;
-    width: 25%;
-    vertical-align: top;
-    cursor: pointer;
-    margin: 10px 0px 0px 10px;
-  }
-}
-
-@media (max-width: 1100px) {
-  .simple-card {
-    display: inline-block !important;
-    width: 20%;
-    vertical-align: top;
-    cursor: pointer;
-    margin: 10px 0px 0px 10px;
-  }
-}
-
-@media (max-width: 800px) {
-  :host {
-    text-align: center;
-    margin: 0;
-    padding: 0;
-  }
-
-  .simple-card {
-    width: 90%;
-    vertical-align: top;
-    cursor: pointer;
-    margin: auto;
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
+.lang-flags {
+  padding-right: 10px;
 }
