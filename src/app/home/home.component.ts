@@ -11,13 +11,13 @@ import * as WatchStyleKit from 'assets/js/WatchStyleKit.js';
 export class HomeComponent implements OnInit, AfterViewInit {
 
 
-  private options: GridsterConfig;
-  private personalData: Object;
-  private contactInfo: Object;
-  private tumInfo: Object;
-  private epnInfo: Object;
-  private langs: Object;
-  private jobs: Object;
+  options: GridsterConfig;
+  personalData;
+  contactInfo;
+  tumInfo;
+  epnInfo;
+  langs;
+  jobs;
 
   constructor() {
     this.setPersonalData();

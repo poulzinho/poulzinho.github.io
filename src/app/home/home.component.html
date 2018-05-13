@@ -3,7 +3,8 @@
   <gridster-item [item]="{cols: 5, rows: 10, y: 0, x: 1, resizeEnabled: true}">
     <mat-card fxFill fxLayout="column" fxLayoutAlign="space-between stretch">
       <div class="blend-blue mat-card-header-photo">
-        <img src="assets/img/paul.jpg">
+        <img
+          src="https://lh3.googleusercontent.com/oJVza64iTcuK9zrsahM-1jEnfSkGIZBwYFeIF9QU1vN5vkteVBf59EZu5G3_GVfbVzjlXwdiePhitn-IzIUjQwgWbbQcdvgzD7fU09029tp8A2CoKAZ4oiXsp1KZXe3ZcJCOue7uSg=w2400">
       </div>
       <div fxFlex="0" class="mat-card-header-photo-name">
         <p class="photo-name">About me</p>
@@ -21,7 +22,7 @@
               <div fxFlex fxLayout="row" fxLayoutAlign="start center">
                 <mat-icon fxFlex="50px">date_range</mat-icon>
                 <mat-form-field fxFlex="85">
-                  <input matInput placeholder="Birthdate" [value]="personalData.birthdate | date : format : timezone"
+                  <input matInput placeholder="Birthdate" [value]="personalData.birthdate | date : 'mediumDate'"
                          [readonly]="true">
                 </mat-form-field>
               </div>
@@ -93,7 +94,7 @@
   <gridster-item [item]="{cols: 6, rows: 10, y: 0, x: 0, resizeEnabled: true}">
     <mat-card fxFill fxLayout="column" fxLayoutAlign="space-between stretch">
       <div class="blend-blue mat-card-header-photo">
-        <img src="assets/img/education.jpg">
+        <img src="https://lh3.googleusercontent.com/VdwAY6dhYh7q_aug4MpzF8Ug2Jmv-QxHs1h_BVPbBdBE9Wmi0KBmJ2BHvhYEBiz13hj0y_4QHvo8bXF9s0jINP7kdBJdaxE24I0bpBpW-8RtcmGqwhrNGhRU_6cFMHdVbro8IFymAw=w2400">
       </div>
       <div fxFlex="0" class="mat-card-header-photo-name">
         <p class="photo-name">Education</p>
