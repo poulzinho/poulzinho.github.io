@@ -94,7 +94,8 @@
   <gridster-item [item]="{cols: 6, rows: 10, y: 0, x: 0, resizeEnabled: true}">
     <mat-card fxFill fxLayout="column" fxLayoutAlign="space-between stretch">
       <div class="blend-blue mat-card-header-photo">
-        <img src="https://lh3.googleusercontent.com/VdwAY6dhYh7q_aug4MpzF8Ug2Jmv-QxHs1h_BVPbBdBE9Wmi0KBmJ2BHvhYEBiz13hj0y_4QHvo8bXF9s0jINP7kdBJdaxE24I0bpBpW-8RtcmGqwhrNGhRU_6cFMHdVbro8IFymAw=w2400">
+        <img
+          src="https://lh3.googleusercontent.com/VdwAY6dhYh7q_aug4MpzF8Ug2Jmv-QxHs1h_BVPbBdBE9Wmi0KBmJ2BHvhYEBiz13hj0y_4QHvo8bXF9s0jINP7kdBJdaxE24I0bpBpW-8RtcmGqwhrNGhRU_6cFMHdVbro8IFymAw=w2400">
       </div>
       <div fxFlex="0" class="mat-card-header-photo-name">
         <p class="photo-name">Education</p>
@@ -199,7 +200,7 @@
             <div class="demo-tab-content">
 
               <form fxFlex fxLayout="column" fxLayoutAlign="start stretch">
-                <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+                <div fxFlex fxLayout="row" fxLayoutAlign="start center">
                   <img class="lang-flags" fxFlex="50px" src="assets/img/spain.svg">
                   <mat-form-field fxFlex="85">
                     <input matInput placeholder="Spanish" [value]="langs.spanish" [readonly]="true">
@@ -454,6 +455,10 @@
         <a mat-button [href]="contactInfo.linkedin" data-rel="external" target="_blank">
           <mat-icon fxFlex="50px" fontSet="fab" fontIcon="fa-linkedin"></mat-icon>
           LINKEDIN
+        </a>
+        <a mat-button [href]="contactInfo.github" data-rel="external" target="_blank">
+          <mat-icon fxFlex="50px" fontSet="fab" fontIcon="fa-github"></mat-icon>
+          GITHUB
         </a>
       </mat-card-actions>
     </mat-card>

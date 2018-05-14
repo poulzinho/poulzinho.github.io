@@ -67,7 +67,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
       mobilePhone: '+49 (172) 4529 452',
       phone: '01724529452',
       facebook: 'https://www.facebook.com/paul.gualotuna',
-      linkedin: 'https://www.linkedin.com/in/paul-gualotuna/?locale=en_US'
+      linkedin: 'https://www.linkedin.com/in/paul-gualotuna/?locale=en_US',
+      github: 'https://github.com/poulzinho'
     };
   }
 
@@ -111,7 +112,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       },
       TUM: {
         dates: '2016 - 2017',
-        company: 'Technical University of Münich',
+        company: 'Technical University of Munich',
         place: 'Munich, Germany',
         position: 'Research assistant (Hiwi)',
         description: 'Software and web development',
