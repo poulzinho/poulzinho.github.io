@@ -1,0 +1,7 @@
+pre.hljs {
+    overflow-x: hidden !important;
+}
+
+pre.hljs span.hljs-function {
+    text-align: left;
+}

@@ -1,0 +1,36 @@
+.ui.table {
+    border: 0 !important;
+}
+
+.ui.table tr td {
+    padding: 0 0 5px 4px !important;
+    border-top: 0 !important;
+}
+
+.table-key {
+    width: 100px;
+}
+
+.ui.progress {
+    margin: 0 !important;
+}
+
+.ui.rating.color--green .active.icon {
+    background: 0 0;
+    color: #21ba45;
+}
+
+.ui.rating.color--yellow .active.icon {
+    background: 0 0;
+    color: #ffe623;
+}
+
+.ui.rating.color--orange .active.icon {
+    background: 0 0;
+    color:  #fbbd08;
+}
+
+.ui.rating.color--blue .active.icon {
+    background: 0 0;
+    color: #2185d0;
+}

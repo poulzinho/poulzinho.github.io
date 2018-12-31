@@ -1,0 +1,179 @@
+.App {
+    text-align: center;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+.layout-header {
+    min-height: 66px;
+    background: #F8F8F8 !important;
+    border-bottom: none !important;
+}
+
+.layout-content {
+    margin: 0;
+    padding: 20px 0;
+}
+
+/* Fix printing margins */
+.ui.grid > .column:not(.row) {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-left: 0.1rem;
+    margin-right: -0.3rem;
+}
+
+.grid-row {
+    padding: 0 0 35px ;
+}
+
+.table-key {
+    width: 120px !important;
+}
+
+.card-header-title {
+    margin-top: 0px !important;
+    margin-bottom: 10px !important;
+}
+
+.cell-country {
+    padding-top: 8px !important;
+    padding-bottom: 0px !important;
+    display: inline-flex !important;
+    vertical-align: middle !important;
+}
+
+.cell-country i {
+    line-height: normal !important;
+    margin: 2px 5px 0 0 !important;
+}
+
+.cell-date i {
+    margin-left: 2px !important;
+    margin-right: 2px !important;
+}
+
+.nda {
+    font-size: 0.8em !important;
+    font-style: italic !important;
+}
+
+/* Mobile */
+
+@media only screen and (max-width: 767px) {
+    [class*="mobile hidden"],
+    [class*="tablet only"]:not(.mobile),
+    [class*="computer only"]:not(.mobile),
+    [class*="large monitor only"]:not(.mobile),
+    [class*="widescreen monitor only"]:not(.mobile),
+    [class*="or lower hidden"] {
+        display: none !important;
+    }
+}
+
+
+/* Tablet / iPad Portrait */
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    [class*="mobile only"]:not(.tablet),
+    [class*="tablet hidden"],
+    [class*="computer only"]:not(.tablet),
+    [class*="large monitor only"]:not(.tablet),
+    [class*="widescreen monitor only"]:not(.tablet),
+    [class*="or lower hidden"]:not(.mobile) {
+        display: none !important;
+    }
+}
+
+
+/* Computer / Desktop / iPad Landscape */
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    [class*="mobile only"]:not(.computer),
+    [class*="tablet only"]:not(.computer),
+    [class*="computer hidden"],
+    [class*="large monitor only"]:not(.computer),
+    [class*="widescreen monitor only"]:not(.computer),
+    [class*="or lower hidden"]:not(.tablet):not(.mobile) {
+        display: none !important;
+    }
+}
+
+
+/* Large Monitor */
+
+@media only screen and (min-width: 1200px) and (max-width: 1919px) {
+    [class*="mobile only"]:not([class*="large monitor"]),
+    [class*="tablet only"]:not([class*="large monitor"]),
+    [class*="computer only"]:not([class*="large monitor"]),
+    [class*="large monitor hidden"],
+    [class*="widescreen monitor only"]:not([class*="large monitor"]),
+    [class*="or lower hidden"]:not(.computer):not(.tablet):not(.mobile) {
+        display: none !important;
+    }
+}
+
+
+/* Widescreen Monitor */
+
+@media only screen and (min-width: 1920px) {
+    [class*="mobile only"]:not([class*="widescreen monitor"]),
+    [class*="tablet only"]:not([class*="widescreen monitor"]),
+    [class*="computer only"]:not([class*="widescreen monitor"]),
+    [class*="large monitor only"]:not([class*="widescreen monitor"]),
+    [class*="widescreen monitor hidden"],
+    [class*="widescreen monitor or lower hidden"] {
+        display: none !important;
+    }
+}
+
+/* Page Context */
+.pushable:not(body) {
+    transform: none;
+}
+
+.pushable:not(body) > .ui.sidebar,
+.pushable:not(body) > .fixed,
+.pushable:not(body) > .pusher:after {
+    top: 66px;
+    position: fixed;
+}
+
+.header-menu--mobile {
+    min-height: 66px;
+    top: -1px;
+    z-index: 10000;
+}
+
+.mobile-toggle {
+    padding: 0 20px;
+}
+
+@media print {
+    @page {
+        size: 210mm 297mm;
+        /* Chrome sets own margins, we change these printer settings */
+        margin: 19.5mm 16mm 20mm 16mm;
+    }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        font-size: 10px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+
+    .layout-header {
+        background: #FFFFFF !important;
+    }
+
+    .table-key {
+        width: 100px !important;
+    }
+
+}
