@@ -138,7 +138,9 @@ export default class PhotoCard extends React.Component {
                                                     </Table.Cell>
                                                     <Table.Cell>
                                                         {item.link ?
-                                                            <a href={item.link} target="_blank">{item.value}</a>
+                                                            <a href={item.link} target="_blank"
+                                                               rel="noopener noreferrer">{item.value}
+                                                            </a>
                                                             : item.value}
                                                     </Table.Cell>
                                                 </Table.Row>

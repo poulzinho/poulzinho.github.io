@@ -155,7 +155,7 @@
     @page {
         size: 210mm 297mm;
         /* Chrome sets own margins, we change these printer settings */
-        margin: 19.5mm 16mm 20mm 16mm;
+        margin: 15mm 16mm 18mm 16mm;
     }
 
     html, body {
