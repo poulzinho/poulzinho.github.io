@@ -34,16 +34,19 @@ const photoCardData = [
             {
                 key: 'Mobile:',
                 value: '(+49) 172 4529 452',
+                link: 'tel:+491724529452',
                 icon: 'mobile'
             },
             {
                 key: 'Email:',
                 value: 'paul.gualotuna.dev (at) gmail.com',
+                link: 'mailto:paul.gualotuna.dev@gmail.com?subject=Job Opportunity',
                 icon: 'mail'
             },
             {
                 key: 'Web:',
                 value: 'www.gualotuna.com',
+                link: 'https://www.gualotuna.com/',
                 icon: 'at'
             },
         ]
@@ -54,17 +57,20 @@ const photoCardData = [
             {
                 key: 'LinkedIn:',
                 value: '/paul-gualotuna',
+                link: 'https://www.linkedin.com/in/paul-gualotuna/?locale=en_US',
                 icon: 'linkedin'
             },
             {
                 key: 'Xing:',
                 value: '/Paul_Gualotuna/cv',
+                link: 'https://www.xing.com/profile/Paul_Gualotuna/cv',
                 icon: 'xing'
             },
             {
                 key: 'Facebook:',
                 value: '/paul.gualotuna',
-                icon: 'linkedin'
+                link: 'https://www.facebook.com/paul.gualotuna',
+                icon: 'facebook'
             },
         ]
     },
@@ -74,6 +80,7 @@ const photoCardData = [
             {
                 key: 'GitHub:',
                 value: '/poulzinho',
+                link: 'https://github.com/poulzinho',
                 icon: 'github'
             },
         ]
@@ -130,7 +137,9 @@ export default class PhotoCard extends React.Component {
                                                         <strong>{item.key}</strong>
                                                     </Table.Cell>
                                                     <Table.Cell>
-                                                        {item.value}
+                                                        {item.link ?
+                                                            <a href={item.link} target="_blank">{item.value}</a>
+                                                            : item.value}
                                                     </Table.Cell>
                                                 </Table.Row>
                                             )}
