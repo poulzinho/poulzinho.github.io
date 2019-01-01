@@ -7,14 +7,14 @@ export default class AboutMe extends React.Component {
         return (
             <div ref={this.props.inputRef} className='grid-row'>
                 <Header as='h3'><Icon name='address card outline'/>About me</Header>
-                <p>I am a Full Stack Software Developer enthusiastic about programming languages
-                    such as JavaScript (ES6+, TypeScript), Java, C#, among others, and with experience in different
-                    frameworks and libraries, including Angular 6+, React, JEE, .Net.
-                    Furthermore, I am also a graphic designer passionate about building up user-oriented interfaces
-                    & UX that supports customer and business needs.
-                    This is a result of being raised and educated in an artistic
-                    and scientific environment, where I learned to balance and combine both of my competencies into
-                    the development of innovative technology solutions.
+                <p>
+                    I am a Full Stack Software Developer enthusiastic about programming languages such as
+                    JavaScript (ES6), TypeScript, Java, C#, among others, and with experience in different frameworks
+                    and libraries, including Angular 6+, React, Stencil, JEE, .Net.
+                    Additionally, I am a graphic designer passionate about building up user-oriented interfaces &
+                    UX that support customer and business needs.
+                    This is a result of being raised and educated in an artistic and scientific environment where
+                    I learned to balance and combine both of my competencies into the development of innovative technology solutions.
                 </p>
                 <p>
 
