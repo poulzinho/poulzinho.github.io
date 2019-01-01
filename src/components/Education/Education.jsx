@@ -15,7 +15,7 @@ const experienceItems = [
         date: 'Oct 2015 - Mar 2018',
         description: 'The Department of Informatics at the Technical University of Munich (TUM) always places high in the rankings. ' +
             'More than 40 professors perform research in 25 academic chairs on topics at the core of informatics and engineering informatics. ' +
-            'This makes it one of the the largest informatics departments in Germany.',
+            'This makes it one of the largest informatics departments in Germany.',
     },
     {
         degree: 'Engr. Information Systems & Computer Science',
@@ -28,10 +28,10 @@ const experienceItems = [
             place: 'Quito, Ecuador'
         },
         date: 'Oct 2006 - Oct 2013',
-        description: 'The Faculty of Systems Engineering of the National Polytechnic School offers research oriented programs ' +
+        description: 'The Faculty of Systems Engineering of the National Polytechnic School offers research-oriented programs ' +
             'in Computer Science & Information and Communication Systems. ' +
             'To achieve quality, ethical and supportive training, it develops research projects ' +
-            'aimed at solving problems of transcendence for the latin american society.'
+            'aimed at solving problems of transcendence for the Latin American society.'
     },
 ];
 
