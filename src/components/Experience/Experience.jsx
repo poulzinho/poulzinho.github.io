@@ -61,7 +61,7 @@ const experienceItems = [
             tasks: [
                 'Primarily, I worked on the architecture and development of the Trigger, a universal JavaScript/TypeScript web component based on ionic/Stencil.js.',
                 'This Trigger integrates easily with diverse frameworks and libraries such as Angular, React, Vue.js, and also with vanilla JavaScript SPAs.',
-                'The Trigger component is currently in production, it launches the entire ecosystem and allows users to follow custom authentications workflows for different use cases where digital authentication is needed, such as: Age verification, package delivery, financial transactions, among others.'
+                'The Trigger component is currently in production, it launches the entire ecosystem and allows users to follow custom authentications workflows for different use cases where digital authentication is needed, such as age verification, package delivery, financial transactions, among others.'
             ],
         }],
         tags: [
@@ -135,7 +135,7 @@ const experienceItems = [
         nda: false,
         role: 'Working Student',
         description: 'The Technical University of Munich (TUM) is one of Europe’s top research-oriented universities\n' +
-            'and is also catalogued as an entrepreneurial university because it cooperates closely with\n' +
+            'and is also cataloged as an entrepreneurial university because it cooperates closely with\n' +
             'industry partners.',
         country: {
             code: 'de',
@@ -174,7 +174,7 @@ const experienceItems = [
             {tag: 'ES6', color: 'blue'},
             {tag: 'Node.js', color: 'blue'},
             {tag: 'Express.js', color: 'blue'},
-            {tag: 'MongoDB.js', color: 'blue'},
+            {tag: 'MongoDB', color: 'blue'},
             {tag: 'Mongoose.js', color: 'blue'},
             {tag: 'Socket.io', color: 'blue'},
             {tag: 'Passport.js', color: 'blue'},
@@ -322,11 +322,11 @@ const experienceItems = [
                 'of a prototype for a business-to-consumer (B2C) e-commerce tailored to the Ecuadorian market.',
             tasks: [
                 'In the role of software developer and UX designer, I designed and developed low and high fidelity\n' +
-                'prototypes in an iterative and incremental way considering the culture and behaviors of\n' +
-                'the Ecuadorian consumers. ',
-                'Moreover, I proposed and combined Scrum and UX into an agile\n' +
-                'software development methodology for enabling the simultaneous work of designers and\n' +
-                'developers. ',
+                'prototypes in an iterative and incremental way considering the culture and behavior of\n' +
+                'Ecuadorian consumers. ',
+                'Moreover, I combined Scrum and UX into an agile\n' +
+                'software development methodology enabling the simultaneous work of designers and\n' +
+                'developers.',
                 'Insumedical was satisfied with the delivered prototype and studied the effects of\n' +
                 'extending from B2B to B2C.'
             ],
