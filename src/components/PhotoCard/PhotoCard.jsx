@@ -115,8 +115,8 @@ export default class PhotoCard extends React.Component {
                     </Card.Content>
                     <Image src='./assets/photo-card.jpg'/>
                     {
-                        photoCardData.map((data) =>
-                            <React.Fragment>
+                        photoCardData.map((data, j) =>
+                            <React.Fragment key={j}>
                                 <Card.Content>
                                     <Card.Meta>{data.title}</Card.Meta>
                                     <Table basic>
