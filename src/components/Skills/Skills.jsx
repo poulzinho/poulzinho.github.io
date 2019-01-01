@@ -6,7 +6,7 @@ export default class Skills extends React.Component {
     render() {
         return (
             <div ref={this.props.inputRef} className='no-print grid-row mobile only'>
-                <Header as='h1'><Icon name='terminal'/>Skills</Header>
+                <Header as='h3'><Icon name='terminal'/>Skills</Header>
                 <SkillsCard/>
             </div>
         )
