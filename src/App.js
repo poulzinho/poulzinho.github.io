@@ -32,6 +32,7 @@ class App extends Component {
         this.experienceRef = React.createRef();
         this.educationRef = React.createRef();
         this.skillsRef = React.createRef();
+        this.skillsCardRef = React.createRef();
     }
 
     handleShowClick = () => this.setState({visible: true});
@@ -48,7 +49,7 @@ class App extends Component {
             <div>
                 <Sticky context={contextRef} className='mobile only' offset={1}>
                     <Segment className='no-print header-menu--mobile'>
-                        <Header as='h5'>
+                        <Header as='h6'>
                             <Icon
                                 onClick={this.handleShowClick}
                                 name='bars'
@@ -61,7 +62,7 @@ class App extends Component {
                                 className='mobile-toggle'
                                 style={visible ? {} : {display: 'none'}}
                             />
-                            <Header.Content as='h6'>
+                            <Header.Content>
                                 <span className='main-header--title'>
                                     PAUL GUALOTUNA
                                 </span>
@@ -98,7 +99,7 @@ class App extends Component {
                                     <Grid.Column width={6}>
                                         <PhotoCard inputRef={el => this.photoCardRef = el}/>
                                         <Education inputRef={el => this.educationRef = el}/>
-                                        <SkillsCard inputClassName='mobile hidden'/>
+                                        <SkillsCard inputRef={el => this.skillsCardRef = el} inputClassName='mobile hidden'/>
                                     </Grid.Column>
                                     <Grid.Column width={10}>
                                         <AboutMe inputRef={el => this.aboutMeRef = el}/>
@@ -150,6 +151,10 @@ class App extends Component {
             }
             case 'Skills': {
                 this.goToRef = this.skillsRef;
+                break;
+            }
+            case 'SkillsCard': {
+                this.goToRef = this.skillsCardRef;
                 break;
             }
             default: {
