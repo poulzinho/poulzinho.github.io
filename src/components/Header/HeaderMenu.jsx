@@ -63,7 +63,7 @@ export default class HeaderMenu extends React.Component {
                 </Container>
                 <Container className='mobile only no-print'>
                     <Header textAlign='center'>
-                        Merry Xmas!!!
+                        Have a wonderful 2019!
                         <Header.Subheader>Happy Coding...</Header.Subheader>
                     </Header>
                 </Container>
