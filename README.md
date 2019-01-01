@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Paul Gualotuna - Personal website
+
+This is my personal website powered by [React](https://github.com/facebook/create-react-app) + [React Semantic UI](https://react.semantic-ui.com/).
 
 ## Available Scripts
 
@@ -27,6 +29,15 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `npm run predeploy`
+Generate a production build of your app.
+
+### `npm run deploy`
+Generate a production build of your app, and deploy it to GitHub Pages.
+
+Notice that when you deploy your app using this command, the production build is pushed to the gh-pages branch. 
+Therefore, you will have to merge gh-pages to the master branch which contains the actual build that GitHub pages renders on screen.
+
 ### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
@@ -38,6 +49,10 @@ Instead, it will copy all the configuration files and the transitive dependencie
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
 ## Learn More
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+For publishing into GitHub Pages, I use [React GH Pages](https://github.com/gitname/react-gh-pages).
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
