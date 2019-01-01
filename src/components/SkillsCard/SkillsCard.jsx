@@ -1,6 +1,6 @@
 import React from 'react'
 import './SkillsCard.css';
-import {Card, Progress, Rating, Table} from 'semantic-ui-react'
+import {Card, Icon, Progress, Rating, Table} from 'semantic-ui-react'
 
 const skills = [
     {
@@ -239,8 +239,9 @@ export default class SkillsCard extends React.Component {
     render() {
         return (
             <Card fluid className={this.props.inputClassName}>
-                <Card.Content>
-                    <Card.Header>Technical Skills</Card.Header>
+                <div ref={this.props.inputRef}></div>
+                <Card.Content className='mobile hidden'>
+                    <Card.Header><Icon name='terminal'/>Skills</Card.Header>
                 </Card.Content>
                 {skills.map((skill, j) =>
                     <Card.Content key={j}>
