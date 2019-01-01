@@ -137,12 +137,12 @@ const skills = [
                 icon: 'assets/inkscape.svg'
             },
             {
-                name: 'A. Illustrator',
+                name: 'Adobe Illustrator',
                 value: '80',
                 icon: 'assets/illustrator.svg'
             },
             {
-                name: 'A. Photoshop',
+                name: 'Photoshop',
                 value: '60',
                 icon: 'assets/photoshop.svg'
             },
