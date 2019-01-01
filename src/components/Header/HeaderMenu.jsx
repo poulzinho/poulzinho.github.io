@@ -24,6 +24,11 @@ const headerMenu = [
         icon: 'graduation',
         route: 'Education'
     },
+    {
+        title: 'Skills',
+        icon: 'terminal',
+        route: 'SkillsCard'
+    },
 ];
 
 export default class HeaderMenu extends React.Component {
