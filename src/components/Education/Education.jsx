@@ -45,7 +45,7 @@ export default class Education extends React.Component {
                     <Card.Header><Icon name='graduation'/> Education</Card.Header>
                 </Card.Content>
                 {experienceItems.map((education, i) =>
-                    <Card.Content fluid key={i}>
+                    <Card.Content fluid='true' key={i}>
                         <Card.Header>
                             <Header as='h2' className='card-header-title'>
                                 {education['degree']}
