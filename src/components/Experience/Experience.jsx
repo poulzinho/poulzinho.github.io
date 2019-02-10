@@ -1,10 +1,46 @@
 import React from "react";
-import {Card, Flag, Header, Icon, Label, List} from "semantic-ui-react";
+import {Card, Flag, Header, Icon, Image, Label, List} from "semantic-ui-react";
 
 const experienceItems = [
     {
+        header: 'SOFTWARE ENGINEER',
+        client: 'Celonis SE',
+        logo: 'assets/celonis.svg',
+        nda: false,
+        role: 'Frontend Architecture and Development',
+        description: 'The Celonis Intelligent Business Cloud is the world’s first SaaS solution for supporting business transformation initiatives ' +
+            'through process mining.',
+        country: {
+            code: 'de',
+            place: 'Munich, Germany'
+        },
+        date: 'Feb 2019 - Present',
+        projects: [{}],
+        tags: [
+            {tag: 'Angular 7', color: 'blue'},
+            {tag: 'TypeScript', color: 'blue'},
+            {tag: 'AngularJS', color: 'blue'},
+            {tag: 'JavaScript', color: 'blue'},
+            {tag: 'Jasmine', color: 'blue'},
+            {tag: 'Karma', color: 'blue'},
+            {tag: 'JSON', color: 'teal'},
+            {tag: 'HTML', color: 'teal'},
+            {tag: 'CSS', color: 'teal'},
+            {tag: 'GIT', color: 'green'},
+            {tag: 'Bitbucket', color: 'green'},
+            {tag: 'JIRA', color: 'green'},
+            {tag: 'Docker', color: 'green'},
+            {tag: 'Kubernetes', color: 'green'},
+            {tag: 'UX Design', color: 'orange'},
+            {tag: 'TDD', color: 'grey'},
+            {tag: 'E2E', color: 'grey'},
+            {tag: 'Agile Development', color: 'grey'},
+        ]
+    },
+    {
         header: 'FRONTEND ARCHITECT/DEVELOPER',
         client: 'Truck & Bus Group in Germany*',
+        logo: 'assets/netlight.svg',
         nda: true,
         role: 'Consultant @ Netlight Consulting GmbH',
         description: 'As a Netlight Consultant, I supported the Financial Services of one of the biggest Truck & Bus Groups in Germany.',
@@ -12,7 +48,7 @@ const experienceItems = [
             code: 'de',
             place: 'Munich, Germany'
         },
-        date: 'Oct 2018 - Present',
+        date: 'Oct 2018 - Jan 2019',
         projects: [{
             title: 'Point of Sale (PoS) platform',
             description: 'The goal was to develop a cloud-based Point of Sale (PoS) platform to offer financing options for vehicle purchases. To achieve that, it was necessary to build and adapt communication channels and interfaces with a number of the company’s legacy systems.',
@@ -47,6 +83,7 @@ const experienceItems = [
     {
         header: 'FRONTEND ARCHITECT/DEVELOPER',
         client: 'Digital Identity Startup*',
+        logo: 'assets/netlight.svg',
         nda: true,
         role: 'Consultant @ Netlight Consulting GmbH',
         description: 'As a Netlight Consultant, I worked for a Munich based startup which aims at changing the paradigm of user\'s digital identity.',
@@ -96,6 +133,7 @@ const experienceItems = [
     {
         header: 'GRAPHICS/UX DESIGNER',
         client: 'Netlight Consulting GmbH',
+        logo: 'assets/netlight.svg',
         nda: false,
         role: 'Working Student',
         description: 'Netlight Consulting GmbH is an IT, innovation and management consultancy company. ' +
@@ -132,6 +170,7 @@ const experienceItems = [
     {
         header: 'FULL STACK DEVELOPER',
         client: 'Technical University of Munich (TUM)',
+        logo: 'assets/tum.svg',
         nda: false,
         role: 'Working Student',
         description: 'The Technical University of Munich (TUM) is one of Europe’s top research-oriented universities\n' +
@@ -206,6 +245,7 @@ const experienceItems = [
     {
         header: 'SOFTWARE DEVELOPER',
         client: 'Escuela Politécnica Nacional (EPN)',
+        logo: 'assets/epn.svg',
         nda: false,
         role: 'Full-Time Employee',
         description: 'Established in 1869, The Escuela Politécnica Nacional (EPN) is Ecuador\'s top university for\n' +
@@ -262,6 +302,7 @@ const experienceItems = [
     {
         header: 'SOFTWARE DEVELOPER',
         client: 'Weatherford South America LLC',
+        logo: 'assets/wft.svg',
         nda: false,
         role: 'Intern',
         description: 'Weatherford is one of the world\'s largest multinational oil and gas service companies.\n' +
@@ -305,6 +346,7 @@ const experienceItems = [
     {
         header: 'SOFTWARE DEVELOPER',
         client: 'Insumedical',
+        logo: 'assets/insumedical.svg',
         nda: false,
         role: 'Junior Software Developer, Intern',
         description: 'Insumedical is a Latin American business-to-business (B2B) company that imports,\n' +
@@ -363,7 +405,7 @@ export default class Experience extends React.Component {
                 {experienceItems.map((experience, i) =>
                     <Card fluid key={i}>
                         <Card.Content>
-
+                            <Image floated='right' size='mini' src={experience['logo']} />
                             <Card.Header>
                                 <Header as='h2' className='card-header-title'>
                                     {experience['header']}
@@ -402,10 +444,13 @@ export default class Experience extends React.Component {
                                         <Header as='h5'>{project['title']}</Header>
                                         <Card.Description>
                                             <p>{project['description']}</p>
-                                            <List bulleted>
-                                                {project['tasks'].map((task, k) => <List.Item
-                                                    key={k}>{task}</List.Item>)}
-                                            </List>
+                                            {
+                                                project['tasks'] ?
+                                                    <List bulleted>
+                                                        {project['tasks'].map((task, k) => <List.Item
+                                                            key={k}>{task}</List.Item>)}
+                                                    </List> : ''
+                                            }
                                         </Card.Description>
                                     </React.Fragment>
                                 )

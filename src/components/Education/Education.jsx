@@ -1,11 +1,12 @@
 import React from "react";
-import {Card, Flag, Icon, List, Header} from "semantic-ui-react";
+import {Card, Flag, Icon, Image, List, Header} from "semantic-ui-react";
 
 const experienceItems = [
     {
         degree: 'M.Sc. Informatics',
         university: 'Technical University of Munich',
         department: 'TUM Department of Informatics',
+        logo: 'assets/tum.svg',
         major: 'Software Engineering',
         minor: 'Computer Graphics and Vision',
         country: {
@@ -21,6 +22,7 @@ const experienceItems = [
         degree: 'Engr. Information Systems & Computer Science',
         university: 'National Polytechnic School',
         department: 'Faculty of Systems Engineering',
+        logo: 'assets/epn.svg',
         major: 'Software Engineering',
         minor: 'Computer Science',
         country: {
@@ -46,6 +48,7 @@ export default class Education extends React.Component {
                 </Card.Content>
                 {experienceItems.map((education, i) =>
                     <Card.Content fluid='true' key={i}>
+                        <Image floated='right' size='mini' src={education['logo']} />
                         <Card.Header>
                             <Header as='h2' className='card-header-title'>
                                 {education['degree']}
