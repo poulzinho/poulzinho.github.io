@@ -11,6 +11,4 @@ export default class Skills extends React.Component {
             </div>
         )
     }
-
 };
-

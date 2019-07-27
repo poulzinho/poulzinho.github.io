@@ -10,14 +10,14 @@ import {
     Sidebar,
     Sticky
 } from 'semantic-ui-react'
-import PhotoCard from "./components/PhotoCard/PhotoCard";
-import HeaderMenu from "./components/Header/HeaderMenu";
-import AboutMe from "./components/AboutMe/AboutMe";
-import Experience from "./components/Experience/Experience";
-import SkillsCard from "./components/SkillsCard/SkillsCard";
-import Education from "./components/Education/Education";
-import Skills from "./components/Skills/Skills";
-import SidebarMenu from "./components/Sidebar/SidebarMenu";
+import PhotoCard from "./components/CV/PhotoCard/PhotoCard";
+import HeaderMenu from "./components/CV/Header/HeaderMenu";
+import AboutMe from "./components/CV/AboutMe/AboutMe";
+import Experience from "./components/CV/Experience/Experience";
+import SkillsCard from "./components/CV/SkillsCard/SkillsCard";
+import Education from "./components/CV/Education/Education";
+import Skills from "./components/CV/Skills/Skills";
+import SidebarMenu from "./components/CV/Sidebar/SidebarMenu";
 
 class App extends Component {
 

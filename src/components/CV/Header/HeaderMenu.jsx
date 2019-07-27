@@ -1,7 +1,7 @@
 import React from 'react'
 import './HeaderMenu.css';
 import {Container, Header, Icon, Step} from 'semantic-ui-react'
-import {Highlighter} from "../../core/Highlighter/Highlighter";
+import {Highlighter} from "../../../core/Highlighter/Highlighter";
 
 const headerMenu = [
     {
