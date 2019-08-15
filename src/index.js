@@ -1,23 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Route, Link, BrowserRouter as Router} from "react-router-dom";
+import {BrowserRouter as Router, Route} from "react-router-dom";
+import {ApolloClient} from 'apollo-client';
+import {HttpLink} from 'apollo-link-http';
+import {InMemoryCache} from 'apollo-cache-inmemory';
+import {ApolloProvider} from 'react-apollo'
+import * as serviceWorker from './serviceWorker';
 import './index.css';
 import 'semantic-ui-css/semantic.min.css';
-import App from './App';
-import Blog from './Blog';
 import Layout from './components/Layout/'
-import * as serviceWorker from './serviceWorker';
+import App from './App';
+import Blog from './components/Blog/';
+import Post from './components/Blog/Post';
+
+const API = 'https://api-euwest.graphcms.com/v1/cjyt65lg3050801dj6cg05fx9/master';
+
+const client = new ApolloClient({
+    link: new HttpLink({uri: API}),
+    cache: new InMemoryCache()
+});
 
 const routing = (
-    <Router>
-        <div>
-            <Layout>
-                <Route exact path="/" component={App}/>
-                <Route path="/blog" component={Blog}/>
-            </Layout>
-        </div>
-    </Router>
-)
+    <ApolloProvider client={client}>
+        <Router>
+            <div>
+                <Layout>
+                    <Route exact path="/" component={App}/>
+                    <Route exact path="/blog" component={Blog}/>
+                    <Route path="/blog/post/:slug" component={Post} />
+                </Layout>
+            </div>
+        </Router>
+    </ApolloProvider>
+);
 
 ReactDOM.render(routing, document.getElementById('root'));
 

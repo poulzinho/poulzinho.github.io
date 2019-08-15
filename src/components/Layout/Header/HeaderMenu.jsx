@@ -1,6 +1,6 @@
 import React from 'react'
 import './HeaderMenu.css';
-import {Header, Icon, Menu, Segment, Step} from 'semantic-ui-react'
+import {Menu, Segment} from 'semantic-ui-react'
 
 const headerMenu = [
     {

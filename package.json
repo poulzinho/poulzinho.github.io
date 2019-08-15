@@ -3,9 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "highlight.js": "^9.13.1",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
+    "apollo-cache-inmemory": "^1.6.3",
+    "apollo-client": "^2.6.4",
+    "apollo-link-http": "^1.5.15",
+    "graphql": "^14.4.2",
+    "graphql-tag": "^2.10.1",
+    "highlight.js": "^9.15.9",
+    "install": "^0.13.0",
+    "markdown-to-jsx": "^6.10.3",
+    "npm": "^6.10.3",
+    "react": "^16.9.0",
+    "react-apollo": "^2.5.8",
+    "react-dom": "^16.9.0",
+    "react-gist": "^1.2.1",
     "react-router-config": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "2.1.1",
@@ -31,6 +41,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "gh-pages": "^2.0.1"
+    "gh-pages": "^2.1.1"
   }
 }
