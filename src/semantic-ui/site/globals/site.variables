@@ -1,0 +1,6 @@
+/*-------------------
+   Global Variables
+--------------------*/
+@pageMinWidth: 0px;
+@lineHeight: 1.8em;
+@fontSize: 1.3em;

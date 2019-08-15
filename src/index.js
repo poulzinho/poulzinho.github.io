@@ -1,3 +1,4 @@
+import 'semantic-ui-less/semantic.less'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route} from "react-router-dom";
@@ -7,7 +8,6 @@ import {InMemoryCache} from 'apollo-cache-inmemory';
 import {ApolloProvider} from 'react-apollo'
 import * as serviceWorker from './serviceWorker';
 import './index.css';
-import 'semantic-ui-css/semantic.min.css';
 import Layout from './components/Layout/'
 import App from './App';
 import Blog from './components/Blog/';
@@ -23,13 +23,11 @@ const client = new ApolloClient({
 const routing = (
     <ApolloProvider client={client}>
         <Router>
-            <div>
-                <Layout>
-                    <Route exact path="/" component={App}/>
-                    <Route exact path="/blog" component={Blog}/>
-                    <Route path="/blog/post/:slug" component={Post} />
-                </Layout>
-            </div>
+            <Layout>
+                <Route exact path="/" render={(props) => <App {...props}/>}/>
+                <Route exact path="/blog" component={Blog}/>
+                <Route path="/blog/post/:slug" component={Post}/>
+            </Layout>
         </Router>
     </ApolloProvider>
 );

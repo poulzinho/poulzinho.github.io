@@ -1,7 +1,6 @@
 import React from 'react'
 import './HeaderMenu.css';
-import {Container, Header, Icon, Step} from 'semantic-ui-react'
-import {Highlighter} from "../../../core/Highlighter/Highlighter";
+import {Button, Container, Header, Icon} from 'semantic-ui-react'
 
 const headerMenu = [
     {
@@ -36,41 +35,25 @@ export default class HeaderMenu extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <Container className='header-container mobile hidden'>
-
+                <Container className='header-container'>
                     <Header as='h5' className='main-header'>
-                        <div className='logo icon'></div>
+                        <div className='logo icon mobile hidden'></div>
                         <Header.Content>
-                        <span className='main-header--title'>
-                        PAUL GUALOTUNA
-                        </span>
-                            {/*eslint-disable */}
-                            <Highlighter>
-                                {'((x = \'Software Developer\', y = \'UX Designer\') => alert(`${x} && ${y}`))();'}
-                            </Highlighter>
-                            {/*eslint-enable */}
+                            <span className='main-header__title'>PAUL GUALOTUNA</span>
+                            <p className='main-header__subtitle'>Software Engineer & UX Designer</p>
                         </Header.Content>
                     </Header>
 
-
-                    <Step.Group fluid className='mobile hidden no-print'>
+                    <Button.Group fluid className='menu-container mobile hidden no-print'>
                         {
                             headerMenu.map((item, i) =>
-                                <Step key={i} onClick={() => this.props.onSelected(item.route)}>
+                                <Button key={i} onClick={() => this.props.onSelected(item.route)} size='huge' basic>
                                     <Icon name={item.icon}/>
-                                    <Step.Content>
-                                        <Step.Title>{item.title}</Step.Title>
-                                    </Step.Content>
-                                </Step>
+                                    {item.title}
+                                </Button>
                             )
                         }
-                    </Step.Group>
-                </Container>
-                <Container className='mobile only no-print'>
-                    <Header textAlign='center'>
-                        Have a wonderful 2019!
-                        <Header.Subheader>Happy Coding...</Header.Subheader>
-                    </Header>
+                    </Button.Group>
                 </Container>
             </React.Fragment>
         )

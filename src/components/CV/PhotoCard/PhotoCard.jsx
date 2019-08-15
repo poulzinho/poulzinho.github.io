@@ -114,12 +114,6 @@ export default class PhotoCard extends React.Component {
             <div ref={this.props.inputRef}>
                 <Card fluid>
 
-                    <Card.Content>
-                        <Card.Header>
-                            <Icon name='info'/>
-                            Basic Info
-                        </Card.Header>
-                    </Card.Content>
                     <Image src='./assets/photo-card.jpg'/>
                     {
                         photoCardData.map((data, j) =>

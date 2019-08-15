@@ -1,6 +1,6 @@
 import React from 'react'
 import './HeaderMenu.css';
-import {Menu, Segment} from 'semantic-ui-react'
+import {Icon, Menu, Segment} from 'semantic-ui-react'
 
 const headerMenu = [
     {
@@ -14,19 +14,35 @@ const headerMenu = [
 ];
 
 export default class HeaderMenu extends React.Component {
-    state = {activeItem: window.location.pathname};
+    state = {
+        activeItem: window.location.pathname,
+        activeBurguer: false
+    };
 
     handleItemClick = (item) => {
         this.setState({activeItem: item.route});
-        this.props.onSelected(item.route)
+        this.props.onSelected(item.route);
+    };
+
+    handleBurguerClick = () => {
+        this.setState({activeBurguer: !this.state.activeBurguer}, () => {
+            this.props.onBurguerClick(this.state.activeBurguer);
+        });
     };
 
     render() {
         const {activeItem} = this.state;
         return (
             <React.Fragment>
-                <Segment inverted>
-                    <Menu inverted pointing secondary>
+                <Segment inverted className='no-print'>
+                    <Menu inverted secondary>
+                        <Menu.Item className='mobile only'>
+                            <Icon
+                                onClick={() => this.handleBurguerClick()}
+                                name='bars'
+                                className='mobile-toggle'
+                            />
+                        </Menu.Item>
                         {
                             headerMenu.map((item, i) =>
                                 <Menu.Item

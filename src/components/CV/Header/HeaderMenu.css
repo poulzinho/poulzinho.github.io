@@ -1,31 +1,26 @@
 .header-container {
-    padding-top: 10px;
+    padding-bottom: 0px;
 }
 
-.logo {
-    display: table-cell;
-    vertical-align: middle;
-    height: 75px !important;
-    width: 100px !important;
-    background: url(/assets/gualotuna-logo.svg) no-repeat;
-    background-size: contain;
-}
 
-.logo--mobile {
-    margin-left: 10px;
-    height: 37px !important;
-    width: 50px !important;
+.menu-container {
+    padding-bottom: 30px;
 }
 
 .main-header {
-    margin-bottom: 0 !important;
+    margin-bottom: 20px !important;
 }
 
 .main-header--mobile {
     min-height: 66px;
 }
 
-.main-header--title {
+.main-header__title {
     font-size: 3em !important;
+    line-height: 40px;
+}
+
+.main-header__subtitle {
+    font-size: 1.1em !important;
     line-height: 40px;
 }

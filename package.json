@@ -2,6 +2,24 @@
   "name": "poulzinho",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://www.gualotuna.com",
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject",
+    "predeploy": "npm run build && cp CNAME build/CNAME",
+    "deploy": "gh-pages -d build"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
   "dependencies": {
     "apollo-cache-inmemory": "^1.6.3",
     "apollo-client": "^2.6.4",
@@ -19,28 +37,13 @@
     "react-router-config": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "2.1.1",
-    "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.84.0"
   },
-  "homepage": "https://www.gualotuna.com",
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build && cp CNAME build/CNAME",
-    "deploy": "gh-pages -d build"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
   "devDependencies": {
-    "gh-pages": "^2.1.1"
+    "@craco/craco": "^5.3.0",
+    "craco-less": "^1.9.0",
+    "gh-pages": "^2.1.1",
+    "less": "^3.9.0",
+    "semantic-ui-less": "^2.4.1"
   }
 }
