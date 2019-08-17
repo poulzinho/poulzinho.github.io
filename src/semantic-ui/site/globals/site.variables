@@ -2,5 +2,5 @@
    Global Variables
 --------------------*/
 @pageMinWidth: 0px;
-@lineHeight: 1.8em;
+@lineHeight: 1.7em;
 @fontSize: 1.3em;

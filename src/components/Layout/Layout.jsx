@@ -4,29 +4,22 @@ import {Container, Menu, Sidebar, Sticky} from 'semantic-ui-react'
 import HeaderMenu from "./Header/HeaderMenu";
 import SidebarMenu from "./Sidebar/SidebarMenu";
 import {withRouter} from 'react-router-dom'
+import {goToRef} from "../../core/Utils/Utils";
+import {withGlobalState} from "react-globally";
 
 class Layout extends Component {
 
-    state = {
-        visibleSidebar: false
-    };
+    state = {};
 
-    showSidebar = () => this.setState({visibleSidebar: true});
-    hideSidebar = () => this.setState({visibleSidebar: false});
-
-    handleStickyContextRef = contextRef => this.setState({contextRef})
+    handleStickyContextRef = contextRef => this.setState({contextRef});
 
     render() {
-
-        const {contextRef, visibleSidebar} = this.state;
+        const {contextRef} = this.state;
         return (
             <React.Fragment>
                 <Sticky context={contextRef} offset={1}>
-                    <HeaderMenu
-                        onSelected={this.goToSection}
-                        onBurguerClick={(active) => active ? this.showSidebar() : this.hideSidebar()}/>
+                    <HeaderMenu onSelected={this.goToSection} onShowSidebar={this.showSidebar} onHideSidebar={this.hideSidebar}/>
                 </Sticky>
-
                 <Sidebar.Pushable>
                     <Sidebar
                         as={Menu}
@@ -36,11 +29,11 @@ class Layout extends Component {
                         onHide={this.hideSidebar}
                         target={this.segmentRef}
                         vertical
-                        visible={visibleSidebar}
+                        visible={this.props.globalState.sidebarActive}
                         width='thin'
                         className='mobile only'
                     >
-                        <SidebarMenu onSelected={this.hideSidebarAndGoToSection}/>
+                        <SidebarMenu onSelected={this.hideSidebarAndGoToRef}/>
                     </Sidebar>
 
                     <Sidebar.Pusher onClick={() => {
@@ -56,9 +49,17 @@ class Layout extends Component {
         )
     }
 
-    hideSidebarAndGoToSection = (section) => {
+    hideSidebar = () => {
+        this.props.setGlobalState(() => ({sidebarActive: false}));
+    };
+
+    showSidebar = () => {
+        this.props.setGlobalState(() => ({sidebarActive: true}));
+    };
+
+    hideSidebarAndGoToRef = (ref) => {
         this.hideSidebar();
-        this.goToSection(section);
+        goToRef(ref);
     };
 
     goToSection = (section) => {
@@ -66,4 +67,4 @@ class Layout extends Component {
     }
 }
 
-export default withRouter(Layout);
+export default withRouter(withGlobalState(Layout));

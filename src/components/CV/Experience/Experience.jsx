@@ -1,7 +1,7 @@
 import React from "react";
 import {Card, Flag, Header, Icon, Image, Label, List} from "semantic-ui-react";
 
-const experienceItems = [
+const experienceData= [
     {
         header: 'SOFTWARE ENGINEER',
         client: 'Celonis SE',
@@ -402,7 +402,7 @@ export default class Experience extends React.Component {
         return (
             <div ref={this.props.inputRef} className='grid-row'>
                 <Header as='h3'><Icon name='briefcase'/> Experience</Header>
-                {experienceItems.map((experience, i) =>
+                {experienceData.map((experience, i) =>
                     <Card fluid key={i}>
                         <Card.Content>
                             <Image floated='right' size='mini' src={experience['logo']} />

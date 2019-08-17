@@ -1,7 +1,7 @@
 import React from "react";
-import {Card, Flag, Icon, Image, List, Header} from "semantic-ui-react";
+import {Card, Container, Flag, Icon, Image, List, Header} from "semantic-ui-react";
 
-const experienceItems = [
+const educationData = [
     {
         degree: 'M.Sc. Informatics',
         university: 'Technical University of Munich',
@@ -41,51 +41,51 @@ export default class Education extends React.Component {
 
     render() {
         return (
-            <Card fluid>
+            <React.Fragment>
                 <div ref={this.props.inputRef}></div>
-                <Card.Content>
-                    <Card.Header><Icon name='graduation'/> Education</Card.Header>
-                </Card.Content>
-                {experienceItems.map((education, i) =>
-                    <Card.Content fluid='true' key={i}>
-                        <Image floated='right' size='mini' src={education['logo']} />
-                        <Card.Header>
-                            <Header as='h2' className='card-header-title'>
-                                {education['degree']}
-                                <Header.Subheader>
-                                    <Icon name='angle double right'/>{education['major']}
-                                </Header.Subheader>
-                                <Header.Subheader>
-                                    <Icon name='angle right'/>{education['minor']}
-                                </Header.Subheader>
-                            </Header>
-                            <Header as='h3' className='card-header-title'>
-                                {education['university']}
-                                <Header.Subheader>
-                                    {education['department']}
-                                </Header.Subheader>
-                            </Header>
-                        </Card.Header>
+                <Header as='h3'><Icon name='graduation'/> Education</Header>
+                <Card fluid>
+                    {educationData.map((education, i) =>
+                        <Card.Content fluid='true' key={i}>
+                            <Image floated='right' size='mini' src={education['logo']}/>
+                            <Card.Header>
+                                <Header as='h2' className='card-header-title'>
+                                    {education['degree']}
+                                    <Header.Subheader>
+                                        <Icon name='angle double right'/>{education['major']}
+                                    </Header.Subheader>
+                                    <Header.Subheader>
+                                        <Icon name='angle right'/>{education['minor']}
+                                    </Header.Subheader>
+                                </Header>
+                                <Header as='h3' className='card-header-title'>
+                                    {education['university']}
+                                    <Header.Subheader>
+                                        {education['department']}
+                                    </Header.Subheader>
+                                </Header>
+                            </Card.Header>
 
-                        <Card.Meta>
-                            <List>
-                                <List.Item className='cell-country'>
-                                    <Flag name={education['country']['code']}/>
-                                    <p>{education['country']['place']}</p>
-                                </List.Item>
-                                <List.Item className='cell-date'>
-                                    <Icon name='calendar check outline'/>
-                                    {education['date']}
-                                </List.Item>
-                            </List>
-                        </Card.Meta>
+                            <Card.Meta>
+                                <List>
+                                    <List.Item className='cell-country'>
+                                        <Flag name={education['country']['code']}/>
+                                        <p>{education['country']['place']}</p>
+                                    </List.Item>
+                                    <List.Item className='cell-date'>
+                                        <Icon name='calendar check outline'/>
+                                        {education['date']}
+                                    </List.Item>
+                                </List>
+                            </Card.Meta>
 
-                        <Card.Description>
-                            <p>{education['description']}</p>
-                        </Card.Description>
-                    </Card.Content>
-                )}
-            </Card>
+                            <Card.Description>
+                                <p>{education['description']}</p>
+                            </Card.Description>
+                        </Card.Content>
+                    )}
+                </Card>
+            </React.Fragment>
         )
     }
 

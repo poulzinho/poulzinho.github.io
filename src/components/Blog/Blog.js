@@ -1,6 +1,7 @@
 import React from 'react'
 import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
+import {withGlobalState} from "react-globally";
 
 class Blog extends React.Component {
 
@@ -9,6 +10,12 @@ class Blog extends React.Component {
     goToPost = (slug) => {
         this.props.history.push(`${this.postPath}${slug}`);
     };
+
+    componentDidMount() {
+        this.props.setGlobalState(() => ({
+            sidebarItems: []
+        }));
+    }
 
     render() {
         const data = this.props.data;
@@ -40,4 +47,4 @@ const allPosts = gql`
   }
 `;
 
-export default graphql(allPosts)(Blog);
+export default graphql(allPosts)(withGlobalState(Blog));

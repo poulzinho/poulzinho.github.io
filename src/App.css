@@ -8,6 +8,33 @@
     padding: 20px 0;
 }
 
+.header-container {
+    padding-bottom: 0px;
+}
+
+
+.menu-container {
+    padding-bottom: 30px;
+}
+
+.main-header {
+    margin-bottom: 20px !important;
+}
+
+.main-header--mobile {
+    min-height: 66px;
+}
+
+.main-header__title {
+    font-size: 3em !important;
+    line-height: 40px;
+}
+
+.main-header__subtitle {
+    font-size: 1.1em !important;
+    line-height: 40px;
+}
+
 /* Fix printing margins */
 .ui.grid > .column:not(.row) {
     padding-top: 1rem;
@@ -49,6 +76,10 @@
 .nda {
     font-size: 0.8em !important;
     font-style: italic !important;
+}
+
+.hidden-element {
+    display: none !important;
 }
 
 /* Mobile */
@@ -139,7 +170,7 @@
 }
 
 .mobile-toggle {
-    padding: 0 20px;
+    cursor: pointer;
 }
 
 @media print {
@@ -167,4 +198,10 @@
         width: 100px !important;
     }
 
+}
+
+/* Semantic UI - custom */
+
+.sticky {
+    top: 0 !important;
 }

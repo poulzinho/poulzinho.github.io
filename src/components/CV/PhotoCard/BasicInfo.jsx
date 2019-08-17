@@ -1,8 +1,8 @@
 import React from 'react'
 import './PhotoCard.css';
-import {Card, Flag, Icon, Image, Table} from 'semantic-ui-react'
+import {Card, Flag, Header, Icon, Table} from 'semantic-ui-react'
 
-const photoCardData = [
+const basicInfoData = [
     {
         title: 'Personal Data',
         items: [
@@ -35,7 +35,8 @@ const photoCardData = [
                 key: 'Mobile:',
                 value: '(+49) 172 4529 452',
                 link: 'tel:+491724529452',
-                icon: 'mobile'
+                icon: 'mobile',
+                hidden: true
             },
             {
                 key: 'Email:',
@@ -107,23 +108,22 @@ const photoCardData = [
     }
 ];
 
-export default class PhotoCard extends React.Component {
-
+export default class BasicInfo extends React.Component {
     render() {
         return (
-            <div ref={this.props.inputRef}>
+            <React.Fragment>
+                <div ref={this.props.inputRef}></div>
+                <Header as='h3'><Icon name='info'/> Basic info</Header>
                 <Card fluid>
-
-                    <Image src='./assets/photo-card.jpg'/>
                     {
-                        photoCardData.map((data, j) =>
+                        basicInfoData.map((data, j) =>
                             <React.Fragment key={j}>
                                 <Card.Content>
                                     <Card.Meta>{data.title}</Card.Meta>
                                     <Table basic>
                                         <Table.Body>
                                             {data.items.map((item, i) =>
-                                                <Table.Row key={i}>
+                                                <Table.Row key={i} className={item.hidden ? 'hidden-element' : ''}>
                                                     <Table.Cell className='table-key'>
                                                         {item.icon ? <Icon name={item.icon}/> :
                                                             <Flag name={item.flag}/>
@@ -145,10 +145,8 @@ export default class PhotoCard extends React.Component {
                             </React.Fragment>
                         )
                     }
-
                 </Card>
-            </div>
+            </React.Fragment>
         );
     }
-
 }

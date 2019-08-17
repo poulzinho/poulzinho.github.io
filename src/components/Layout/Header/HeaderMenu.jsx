@@ -1,6 +1,7 @@
 import React from 'react'
 import './HeaderMenu.css';
 import {Icon, Menu, Segment} from 'semantic-ui-react'
+import {withGlobalState} from "react-globally";
 
 const headerMenu = [
     {
@@ -13,10 +14,9 @@ const headerMenu = [
     }
 ];
 
-export default class HeaderMenu extends React.Component {
+class HeaderMenu extends React.Component {
     state = {
         activeItem: window.location.pathname,
-        activeBurguer: false
     };
 
     handleItemClick = (item) => {
@@ -24,23 +24,25 @@ export default class HeaderMenu extends React.Component {
         this.props.onSelected(item.route);
     };
 
-    handleBurguerClick = () => {
-        this.setState({activeBurguer: !this.state.activeBurguer}, () => {
-            this.props.onBurguerClick(this.state.activeBurguer);
-        });
-    };
-
     render() {
         const {activeItem} = this.state;
+        const {sidebarActive} = this.props.globalState;
         return (
             <React.Fragment>
                 <Segment inverted className='no-print'>
                     <Menu inverted secondary>
                         <Menu.Item className='mobile only'>
                             <Icon
-                                onClick={() => this.handleBurguerClick()}
+                                onClick={() => this.props.onShowSidebar()}
                                 name='bars'
                                 className='mobile-toggle'
+                                style={!sidebarActive ? {} : {display: 'none'}}
+                            />
+                            <Icon
+                                onClick={() => this.props.onHideSidebar()}
+                                name='bars'
+                                className='mobile-toggle'
+                                style={sidebarActive ? {} : {display: 'none'}}
                             />
                         </Menu.Item>
                         {
@@ -59,3 +61,5 @@ export default class HeaderMenu extends React.Component {
         )
     }
 }
+
+export default withGlobalState(HeaderMenu);
