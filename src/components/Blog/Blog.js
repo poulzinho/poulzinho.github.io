@@ -1,6 +1,7 @@
 import React from 'react'
 import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
+import {Item} from "semantic-ui-react";
 import {withGlobalState} from "react-globally";
 
 class Blog extends React.Component {
@@ -23,13 +24,22 @@ class Blog extends React.Component {
             return <div>Loading blog...</div>
         } else {
             return <div>
-                <div>All entries</div>
-                <div>{
-                    data.posts.map((post, i) =>
-                        <div key={i} onClick={() => this.goToPost(post.slug)}>{JSON.stringify(post)}</div>
-                    )
-                }
-                </div>
+                <h1>All entries</h1>
+                <Item.Group divided>
+                    {
+                        data.posts.map((post, i) =>
+                            <Item key={i} onClick={() => this.goToPost(post.slug)}>
+                                <Item.Image size='small' src='./assets/photo-card.jpg'/>
+                                <Item.Content>
+                                    <Item.Header>{post.title}</Item.Header>
+                                    <Item.Meta>{post.date}</Item.Meta>
+                                    <Item.Meta>{post.slug}</Item.Meta>
+                                    <Item.Description>{post.body}</Item.Description>
+                                </Item.Content>
+                            </Item>
+                        )
+                    }
+                </Item.Group>
             </div>
         }
     }
