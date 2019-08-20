@@ -14,3 +14,10 @@ export const goToRef = (ref, topMargin = 77) => {
         behavior: 'auto'
     })
 };
+
+export const formatDate = (date) => {
+    const objDate = new Date(date);
+    return `${objDate.toLocaleString('en', {month: 'long'})} ` +
+        `${objDate.toLocaleString('en', {day: 'numeric'})}, ` +
+        `${objDate.toLocaleString('en', {year: 'numeric'})}`;
+};

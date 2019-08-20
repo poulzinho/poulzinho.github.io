@@ -1,8 +1,9 @@
 import React from 'react'
 import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
-import {Item} from "semantic-ui-react";
+import {Icon, Item} from "semantic-ui-react";
 import {withGlobalState} from "react-globally";
+import {formatDate} from "../../core/Utils/Utils";
 
 class Blog extends React.Component {
 
@@ -24,17 +25,18 @@ class Blog extends React.Component {
             return <div>Loading blog...</div>
         } else {
             return <div>
-                <h1>All entries</h1>
-                <Item.Group divided>
+                <Item.Group divided link>
                     {
                         data.posts.map((post, i) =>
                             <Item key={i} onClick={() => this.goToPost(post.slug)}>
-                                <Item.Image size='small' src='./assets/photo-card.jpg'/>
+                                <Item.Image size='small' src={post.image}/>
+
                                 <Item.Content>
                                     <Item.Header>{post.title}</Item.Header>
-                                    <Item.Meta>{post.date}</Item.Meta>
-                                    <Item.Meta>{post.slug}</Item.Meta>
-                                    <Item.Description>{post.body}</Item.Description>
+                                    <Item.Meta>
+                                        <Icon name='calendar alternate outline'/> {formatDate(post.date)}
+                                    </Item.Meta>
+                                    <Item.Description>{post.summary}</Item.Description>
                                 </Item.Content>
                             </Item>
                         )
@@ -52,7 +54,8 @@ const allPosts = gql`
         slug
         date
         title
-        body
+        image
+        summary
     }
   }
 `;

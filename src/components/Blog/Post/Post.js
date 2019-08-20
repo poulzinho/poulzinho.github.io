@@ -54,7 +54,8 @@ const singlePost = gql`
         slug
         date
         title
-        body
+        image
+        summary
         markdown
    }
  }
