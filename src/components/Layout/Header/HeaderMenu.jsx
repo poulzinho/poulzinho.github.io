@@ -29,7 +29,7 @@ class HeaderMenu extends React.Component {
         const {sidebarActive} = this.props.globalState;
         return (
             <React.Fragment>
-                <Segment inverted className='no-print'>
+                <Segment inverted className='no-print header-menu'>
                     <Menu inverted secondary>
                         <Menu.Item className='mobile only'>
                             <Icon

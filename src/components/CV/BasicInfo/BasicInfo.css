@@ -6,3 +6,7 @@
     padding: 0 0 5px 4px !important;
     border-top: 0 !important;
 }
+
+.hidden-element {
+    display: none;
+}

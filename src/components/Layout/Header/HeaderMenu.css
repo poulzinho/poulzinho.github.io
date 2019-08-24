@@ -1,26 +1,9 @@
-.header-container {
+.header-menu {
     padding-top: 10px;
+    width: 100%;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
-
-.logo {
-    display: table-cell;
-    vertical-align: middle;
-    height: 80px !important;
-    width: 80px !important;
-    background: url(/assets/gualotuna-logo.svg) no-repeat;
-    background-size: contain;
-}
-
-.main-header {
-    margin-bottom: 0 !important;
-}
-
-.main-header--mobile {
-    min-height: 66px;
-}
-
-.main-header--title {
-    font-size: 3em !important;
-    line-height: 40px;
-}

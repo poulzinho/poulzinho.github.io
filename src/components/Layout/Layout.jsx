@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import '../../App.css';
-import {Container, Menu, Sidebar, Sticky} from 'semantic-ui-react'
+import './Layout.css';
+import {Container, Menu, Sidebar} from 'semantic-ui-react'
 import HeaderMenu from "./Header/HeaderMenu";
 import SidebarMenu from "./Sidebar/SidebarMenu";
 import {withRouter} from 'react-router-dom'
@@ -14,12 +14,11 @@ class Layout extends Component {
     handleStickyContextRef = contextRef => this.setState({contextRef});
 
     render() {
-        const {contextRef} = this.state;
         return (
             <React.Fragment>
-                <Sticky context={contextRef} offset={1}>
-                    <HeaderMenu onSelected={this.goToSection} onShowSidebar={this.showSidebar} onHideSidebar={this.hideSidebar}/>
-                </Sticky>
+                <HeaderMenu onSelected={this.goToSection}
+                            onShowSidebar={this.showSidebar}
+                            onHideSidebar={this.hideSidebar}/>
                 <Sidebar.Pushable>
                     <Sidebar
                         as={Menu}

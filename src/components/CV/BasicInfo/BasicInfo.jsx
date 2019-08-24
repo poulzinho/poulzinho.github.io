@@ -1,5 +1,5 @@
 import React from 'react'
-import './PhotoCard.css';
+import './BasicInfo.css';
 import {Card, Flag, Header, Icon, Table} from 'semantic-ui-react'
 
 const basicInfoData = [
@@ -33,8 +33,8 @@ const basicInfoData = [
         items: [
             {
                 key: 'Mobile:',
-                value: '(+49) 172 4529 452',
-                link: 'tel:+491724529452',
+                value: '(+49) 176 2273 7622',
+                link: 'tel:+4917622737622',
                 icon: 'mobile',
                 hidden: true
             },
@@ -63,7 +63,7 @@ const basicInfoData = [
             },
             {
                 key: 'Xing:',
-                value: '/Paul_Gualotuna/cv',
+                value: '/paul_gualotuna',
                 link: 'https://www.xing.com/profile/Paul_Gualotuna/cv',
                 icon: 'xing'
             },

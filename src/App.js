@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import './App.css';
 import {withGlobalState} from "react-globally";
-import {Button, Card, Container, Grid, Header, Icon, Image} from 'semantic-ui-react'
+import {Button, Card, Grid, Header, Icon, Image} from 'semantic-ui-react'
 import {goToRef} from "./core/Utils/Utils";
-import BasicInfo from "./components/CV/PhotoCard/BasicInfo";
+import BasicInfo from "./components/CV/BasicInfo/BasicInfo";
 import AboutMe from "./components/CV/AboutMe/AboutMe";
 import Experience from "./components/CV/Experience/Experience";
 import Education from "./components/CV/Education/Education";
@@ -71,15 +71,15 @@ class App extends Component {
     render() {
         return (
             <React.Fragment>
-                <Header as='h5' className='main-header'>
-                    <div className='logo icon'></div>
+                <Header as='h5' className='cv-main-header'>
+                    <div className='cv-logo icon'></div>
                     <Header.Content>
-                        <span className='main-header__title'>PAUL GUALOTUNA</span>
-                        <p className='main-header__subtitle'>Software Engineer & UX Designer</p>
+                        <span className='cv-main-header__title'>PAUL GUALOTUNA</span>
+                        <p className='cv-main-header__subtitle'>Software Engineer & UX Designer</p>
                     </Header.Content>
                 </Header>
 
-                <Button.Group fluid className='menu-container mobile hidden no-print'>
+                <Button.Group fluid className='cv-menu-container mobile hidden no-print'>
                     {
                         this.navItems.map((item, i) =>
                             <Button key={i} onClick={() => goToRef(item.ref)} size='huge' basic>
@@ -102,7 +102,7 @@ class App extends Component {
                     <Grid.Column width={10}>
                         <AboutMe inputRef={el => this.aboutMeRef = el}/>
                         <Experience inputRef={el => this.experienceRef = el}/>
-                        <Skills inputRef={el => this.skillsRef = el} inputClassName='mobile only'/>
+                        <Skills inputRef={el => this.skillsRef = el} inputClassName='mobile only no-print'/>
                     </Grid.Column>
                 </Grid>
             </React.Fragment>
