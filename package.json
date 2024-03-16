@@ -1,0 +1,45 @@
+{
+  "name": "poulzinho.github.io",
+  "version": "0.1.0",
+  "homepage": "https://github.com/poulzinho/poulzinho.github.io",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "test": "NODE_ENV=test jest --watch",
+    "build": "tsc -p tsconfig.prod.json && vite build && cp CNAME ./dist/CNAME",
+    "deploy": "npm run build && gh-pages -d dist -m \"Deployment on $(date '+%Y-%m-%d %H:%M:%S')\" ",
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@happy-dom/jest-environment": "^13.8.6",
+    "@swc/core": "^1.4.8",
+    "@swc/jest": "^0.2.36",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^14.2.1",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/jest": "^29.5.12",
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "gh-pages": "^6.1.1",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jest-watch-typeahead": "^2.2.2",
+    "prettier": "3.2.5",
+    "prettier-plugin-sort-json": "^3.1.0",
+    "ts-jest": "^29.0.0-next.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.6"
+  }
+}
