@@ -1,7 +1,8 @@
 import './App.css'
+import ProfileCard from './presentation/profile/profile_card.view.tsx'
 
 function App() {
-  return <div>Paul Gualotuna - 2024</div>
+  return <ProfileCard />
 }
 
 export default App
