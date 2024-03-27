@@ -27,5 +27,5 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 - [ ] I performed a self-review of my code
 - [ ] I commented hard-to-understand code 
 - [ ] I made corresponding changes to the documentation
-- [ ] I added tests (if needed) and checked that current unit tests pass locally
+- [ ] I added tests (if needed) and checked that current unit tests passed locally
 
