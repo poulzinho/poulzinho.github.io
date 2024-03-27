@@ -20,6 +20,7 @@ export default function Layout(props: PropsWithChildren): JSX.Element {
             color='inherit'
             aria-label='menu'
             sx={{ mr: 2 }}
+            disabled
           >
             <MenuIcon />
           </IconButton>
