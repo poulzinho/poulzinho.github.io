@@ -3,6 +3,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import { PropsWithChildren } from 'react'
 
 const TOOLBAR_ARIA_LABEL = 'Toolbar'
+const TOOLBAR_HEIGHT = '30px'
 
 /**
  * Main Layout component for the application.
@@ -26,7 +27,7 @@ export default function Layout(props: PropsWithChildren): JSX.Element {
           </IconButton>
         </Toolbar>
       </AppBar>
-      {children}
+      <Box marginTop={TOOLBAR_HEIGHT}>{children}</Box>
     </Box>
   )
 }
