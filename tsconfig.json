@@ -22,13 +22,10 @@
 
     /** Paths */
     "baseUrl": "src",
-    "paths": {
-      "src/*": ["src/*"]
-    },
 
     /** Types */
-    "types": ["@testing-library/jest-dom"]
+    "types": ["vitest/globals", "@testing-library/jest-dom"]
   },
-  "include": ["src"],
+  "include": ["src", "config/vitest"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

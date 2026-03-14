@@ -6,7 +6,7 @@
   "htmlWhitespaceSensitivity": "css",
   "insertPragma": false,
   "jsxSingleQuote": true,
-  "plugins": ["prettier-plugin-sort-json"],
+  "plugins": ["prettier-plugin-sort-json", "prettier-plugin-tailwindcss"],
   "printWidth": 80,
   "proseWrap": "preserve",
   "quoteProps": "as-needed",
@@ -16,5 +16,4 @@
   "tabWidth": 2,
   "trailingComma": "es5",
   "useTabs": false,
-  "vueIndentScriptAndStyle": false
 }
