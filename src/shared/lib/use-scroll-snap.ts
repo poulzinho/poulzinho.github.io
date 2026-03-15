@@ -16,6 +16,7 @@ export function useScrollSnap() {
     let currentIndex = 0
     let isAnimating = false
     let touchStartY = 0
+    let cleanup: (() => void) | null = null
 
     const getPanels = (): HTMLElement[] =>
       gsap.utils.toArray<HTMLElement>('.scroll-panel')
@@ -46,7 +47,7 @@ export function useScrollSnap() {
     const onTouchEnd = (e: TouchEvent) => {
       if (isAnimating) return
       const delta = touchStartY - e.changedTouches[0].clientY
-      if (Math.abs(delta) < 10) return
+      if (Math.abs(delta) < 60) return
       goTo(delta > 0 ? currentIndex + 1 : currentIndex - 1)
     }
 
@@ -56,16 +57,36 @@ export function useScrollSnap() {
       if (e.key === 'ArrowUp'   || e.key === 'PageUp')   { e.preventDefault(); goTo(currentIndex - 1) }
     }
 
-    window.addEventListener('wheel', onWheel, { passive: false })
-    window.addEventListener('touchstart', onTouchStart, { passive: true })
-    window.addEventListener('touchend', onTouchEnd, { passive: true })
-    window.addEventListener('keydown', onKeyDown)
+    const attach = () => {
+      window.addEventListener('wheel', onWheel, { passive: false })
+      window.addEventListener('touchstart', onTouchStart, { passive: true })
+      window.addEventListener('touchend', onTouchEnd, { passive: true })
+      window.addEventListener('keydown', onKeyDown)
+      cleanup = () => {
+        window.removeEventListener('wheel', onWheel)
+        window.removeEventListener('touchstart', onTouchStart)
+        window.removeEventListener('touchend', onTouchEnd)
+        window.removeEventListener('keydown', onKeyDown)
+      }
+    }
+
+    const detach = () => {
+      cleanup?.()
+      cleanup = null
+    }
+
+    // Only apply scroll snap on screens with enough width AND height.
+    // The height condition excludes landscape phones (e.g. 932×430) where snap
+    // would clip card content that doesn't fit in the short viewport.
+    const mq = window.matchMedia('(min-width: 768px) and (min-height: 600px)')
+    const onMqChange = (e: MediaQueryListEvent) => (e.matches ? attach() : detach())
+    if (mq.matches) attach()
+    mq.addEventListener('change', onMqChange)
 
     return () => {
-      window.removeEventListener('wheel', onWheel)
-      window.removeEventListener('touchstart', onTouchStart)
-      window.removeEventListener('touchend', onTouchEnd)
-      window.removeEventListener('keydown', onKeyDown)
+      detach()
+      mq.removeEventListener('change', onMqChange)
+      gsap.killTweensOf(window)
     }
   }, [])
 
