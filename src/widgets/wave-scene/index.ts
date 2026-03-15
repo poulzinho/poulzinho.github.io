@@ -1,0 +1,5 @@
+export { default as WaveScene } from './ui/wave-scene'
+export { default as CuySurfer } from './ui/cuy-surfer'
+export type { WaveConfig, GradientStop } from './lib/wave-configs'
+export { DEFAULT_WAVE_CONFIGS } from './lib/wave-configs'
+export { computeY, findNextPeak, sampleWave, W, H } from './lib/wave-math'
