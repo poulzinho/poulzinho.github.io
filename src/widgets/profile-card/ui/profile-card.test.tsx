@@ -1,7 +1,15 @@
 import { fireEvent, render, screen } from '@testing-library/react'
+import ThemeProvider from 'shared/ui/theme/theme-provider'
 import ProfileCard from './profile-card'
 
 vi.mock('react-i18next')
+
+const renderWithTheme = () =>
+  render(
+    <ThemeProvider>
+      <ProfileCard />
+    </ThemeProvider>
+  )
 
 describe('ProfileCard', () => {
   let windowSpy: ReturnType<typeof vi.spyOn>
@@ -14,7 +22,7 @@ describe('ProfileCard', () => {
   })
 
   it('renders the ProfileCard and its elements', () => {
-    render(<ProfileCard />)
+    renderWithTheme()
 
     // CARD HEADER
     expect(screen.getByText('paul_initials')).toBeInTheDocument()
