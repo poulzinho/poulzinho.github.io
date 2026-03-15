@@ -6,7 +6,10 @@
       "Bash(npm install -D prettier@latest prettier-plugin-sort-json@latest eslint@latest @eslint/js typescript-eslint eslint-plugin-react-hooks@latest eslint-plugin-react-refresh@latest eslint-plugin-boundaries@latest @testing-library/jest-dom@latest @testing-library/user-event@latest @swc/jest@latest --legacy-peer-deps)",
       "Bash(npm install -D @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest --legacy-peer-deps)",
       "Bash(npm install -D tailwindcss @tailwindcss/vite)",
-      "Bash(npm install -D tailwindcss @tailwindcss/vite --legacy-peer-deps)"
+      "Bash(npm install -D tailwindcss @tailwindcss/vite --legacy-peer-deps)",
+      "Bash(npx tsc --noEmit)",
+      "WebSearch",
+      "WebFetch(domain:freesvg.org)"
     ]
   }
 }

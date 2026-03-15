@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -9,14 +11,18 @@
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background: linear-gradient(to bottom, #2563eb, #1d4ed8); /* blue-600 → blue-700 */
+  transition: background 0.3s ease;
+}
+
+.dark body {
+  background: linear-gradient(to bottom, #0d0221, #1a0a3e); /* waveDeep1 → waveDeep2 */
 }
 
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
 }
