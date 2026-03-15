@@ -31,7 +31,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className='relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-t from-cyan-600 to-blue-700 dark:from-gray-900 dark:to-indigo-950'>
+    <section className='relative flex min-h-dvh w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-t from-cyan-600 to-blue-700 dark:from-gray-900 dark:to-indigo-950'>
       <CelestialBody />
       <Island />
       <WaveScene configsRef={configsRef} splashEmitterRef={splashEmitterRef}>

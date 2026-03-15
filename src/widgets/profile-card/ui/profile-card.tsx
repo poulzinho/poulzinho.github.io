@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import profilePic from 'shared/assets/images/profile-pic.jpg'
 import { COLORS } from 'shared/lib/colors'
@@ -49,6 +50,15 @@ export default function ProfileCard() {
   const { theme } = useTheme()
   const s = theme === 'light' ? SUN : MOON
 
+  const MQ = '(orientation: landscape) and (max-height: 480px)'
+  const [mobileLandscape, setMobileLandscape] = useState(() => window.matchMedia(MQ).matches)
+  useEffect(() => {
+    const mq = window.matchMedia(MQ)
+    const onChange = (e: MediaQueryListEvent) => setMobileLandscape(e.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+
   return (
     <div className='max-w-[460px] overflow-hidden rounded-lg shadow-2xl'>
       {/* Card header */}
@@ -74,7 +84,7 @@ export default function ProfileCard() {
       {/* Card media */}
       <div className='relative' style={{ isolation: 'isolate' }}>
         <img
-          className='h-[300px] w-full object-cover'
+          className={`${mobileLandscape ? 'h-[140px]' : 'h-[300px]'} w-full object-cover`}
           src={profilePic}
           alt={t('paul_profile_picture_alt_text')}
           title={t('paul_profile_picture_alt_text')}
