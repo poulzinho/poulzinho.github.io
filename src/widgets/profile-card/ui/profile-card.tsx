@@ -87,7 +87,7 @@ export default function ProfileCard() {
             mixBlendMode: s.photoShadowBlend,
           }}
         />
-        <div className='absolute inset-0' style={{ background: s.vignette }} />
+        <div className='absolute inset-0' style={{ background: s.vignette ?? undefined }} />
       </div>
 
       {/* Card content */}

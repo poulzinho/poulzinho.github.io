@@ -110,7 +110,9 @@ export class ParticleEmitter {
       if (p.kind === 'flame') {
         // Color: white-yellow (fresh) → orange → deep red (dying)
         const heat = 1 - t
-        let r = 255, g = 0, b = 0
+        const r = 255
+        let g: number
+        let b = 0
         if (heat < 0.35) {
           g = Math.floor(255 - heat / 0.35 * 55)   // 255 → 200
           b = Math.floor(255 - heat / 0.35 * 255)  // 255 → 0

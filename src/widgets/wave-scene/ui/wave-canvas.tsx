@@ -150,6 +150,7 @@ function WaveCanvas({ configsRef, viewW = W, splashEmitterRef }: Props) {
 
     gsap.ticker.add(tick)
     return () => gsap.ticker.remove(tick)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [configsRef, viewW])
 
   return (

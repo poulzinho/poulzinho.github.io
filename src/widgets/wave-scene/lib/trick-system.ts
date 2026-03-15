@@ -9,6 +9,8 @@ export type TrickKind =
   | 'rocket'
   | 'time-warp'
   | 'anti-gravity'
+  | 'ghost'
+  | 'hyperdash'
 
 // Peak detection thresholds (fraction of current amplitude)
 export const BIG_PEAK_AMP_FACTOR = 0.55

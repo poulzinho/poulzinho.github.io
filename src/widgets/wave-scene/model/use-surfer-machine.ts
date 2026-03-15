@@ -293,7 +293,6 @@ export function useSurferMachine(
   // Cancel pending blend when Auto is turned off so the wave stops mid-boost
   useEffect(() => {
     if (!autoBoost) targetConfigRef.current = null
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoBoost])
 
   const timerRef = useRef(0)
