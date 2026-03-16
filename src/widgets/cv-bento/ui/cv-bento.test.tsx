@@ -27,16 +27,16 @@ describe('CvBento', () => {
     expect(grid).toBeInTheDocument()
   })
 
-  it('renders all 9 cards', () => {
+  it('renders all 11 cards', () => {
     renderWithTheme()
     const cards = document.querySelectorAll('article')
-    expect(cards.length).toBe(10)
+    expect(cards.length).toBe(11)
   })
 
   it('renders hero card with name and tagline', () => {
     renderWithTheme()
     expect(screen.getAllByText('paul_name').length).toBeGreaterThanOrEqual(1)
-    expect(screen.getByText('"cv_hero_tagline"')).toBeInTheDocument()
+    expect(screen.getByText('cv_hero_serif_tagline')).toBeInTheDocument()
   })
 
   it('renders duality caption', () => {
