@@ -6,11 +6,18 @@ export const COLORS = {
   // Celestial bodies
   sunYellow:      '#ffe566',
   sunYellowDark:  '#f0a800',
+  sunPeach:       '#ffb380',   // warm orange-peach — bento accent (light)
+  sunCream:       '#fff8ed',   // warm off-white — bento card bg (light)
+  sunWarm:        '#fdf2f8',   // blush-white — bento secondary card bg (light)
   sunPink:        '#ff71ce',
   sunPinkMed:     '#f559a4',
   sunPinkDark:    '#ec407a',
   moonLavender:   '#f5d0fe',
   moonPurple:     '#a855f7',
+  moonSurface:    '#120833',   // elevated dark surface — bento card bg (dark)
+  moonCard:       '#1f0d4a',   // card fill, lighter than waveDeep2 (dark)
+  moonSlate:      '#1e2a4a',   // dark navy — bento secondary card bg (dark)
+  moonTeal:       '#0f3a4a',   // dark teal — bento accent card bg (dark)
 
   // Ocean waves — back (deep ground swell)
   waveDeep1:      '#0d0221',

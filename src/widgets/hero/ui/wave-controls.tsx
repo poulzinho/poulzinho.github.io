@@ -163,7 +163,7 @@ export default memo(function WaveControls({
   return (
     <>
       {/* Toggle button + desktop dropdown — stacked in one anchored container */}
-      <div className='absolute right-4 top-14 z-50 flex flex-col items-end'>
+      <div className='absolute right-4 top-4 z-50 flex flex-col items-end'>
         <button
           onClick={() => onOpenChange(!isOpen)}
           className='w-28 rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-md transition hover:bg-white/20'
@@ -173,7 +173,7 @@ export default memo(function WaveControls({
 
         {/* Desktop: dropdown panel (md and up) */}
         {isOpen && (
-          <div className='mt-2 hidden w-72 max-h-[calc(100dvh-6rem)] overflow-y-auto rounded-xl bg-black/65 p-4 backdrop-blur-md md:block'>
+          <div className='mt-2 hidden w-72 max-h-[calc(100dvh-4rem)] overflow-y-auto rounded-xl bg-black/65 p-4 backdrop-blur-md md:block'>
             <ControlsContent {...contentProps} />
           </div>
         )}

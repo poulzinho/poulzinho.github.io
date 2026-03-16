@@ -2,6 +2,12 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+:root,
+html {
+  /* Prevent momentum scroll chaining and pull-to-refresh interference */
+  overscroll-behavior: none;
+}
+
 :root {
   font-synthesis: none;
   text-rendering: optimizeLegibility;
