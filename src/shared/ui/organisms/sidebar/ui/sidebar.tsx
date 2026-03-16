@@ -95,6 +95,7 @@ export default function Sidebar() {
       ease: isExpanded ? 'power2.out' : 'power2.in',
       overwrite: true,
     })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isExpanded])
 
   // Mobile drawer + backdrop
@@ -112,6 +113,7 @@ export default function Sidebar() {
       gsap.to(drawerRef.current,   { x: '-100%', duration: 0.24, ease: 'power2.in', overwrite: true })
       gsap.to(backdropRef.current, { opacity: 0, pointerEvents: 'none', duration: 0.20, overwrite: true })
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen])
 
   // Escape closes drawer
@@ -141,6 +143,7 @@ export default function Sidebar() {
     }
     document.addEventListener('keydown', onTab)
     return () => document.removeEventListener('keydown', onTab)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen])
 
   return (
