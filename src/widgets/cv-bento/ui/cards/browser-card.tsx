@@ -424,15 +424,17 @@ export default function BrowserCard() {
     }, cardRef)
 
     return () => ctx.revert()
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   // Kill any in-flight drag/pan snap-back tweens on unmount
   useEffect(() => {
+    const tweens = nodeTweens.current
+    const pan = panTween.current
     return () => {
-      for (const tw of nodeTweens.current) {
+      for (const tw of tweens) {
         gsap.killTweensOf(tw)
       }
-      gsap.killTweensOf(panTween.current)
+      gsap.killTweensOf(pan)
     }
   }, [])
 
