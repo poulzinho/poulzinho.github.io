@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react'
+import { type CSSProperties, type ReactNode } from 'react'
 import { useTheme } from 'shared/ui/theme/theme-context'
 
 export type ChipSize = 'sm' | 'md'
@@ -16,8 +16,10 @@ const SIZE: Record<ChipSize, string> = {
   md: 'px-3 py-1 text-sm',
 }
 
-const SUN = 'bg-black/6 text-gray-800 ring-1 ring-black/10'
-const MOON = 'bg-white/8 text-white/90 ring-1 ring-white/10'
+const SUN_BASE = 'text-gray-800 ring-1 ring-black/10'
+const MOON_BASE = 'text-white/90 ring-1 ring-white/10'
+const SUN_PLAIN = 'bg-black/6'
+const MOON_PLAIN = 'bg-white/8'
 
 export default function Chip({
   label,
@@ -27,9 +29,15 @@ export default function Chip({
   className = '',
 }: ChipProps) {
   const { theme } = useTheme()
-  const themeClass = theme === 'light' ? SUN : MOON
-  const accentStyle = accentColor
-    ? { borderLeft: `2px solid ${accentColor}`, borderRadius: '0 9999px 9999px 0' }
+  const baseClass = theme === 'light' ? SUN_BASE : MOON_BASE
+  const plainBg = theme === 'light' ? SUN_PLAIN : MOON_PLAIN
+
+  const accentStyle: CSSProperties | undefined = accentColor
+    ? {
+        background: `${accentColor}18`,
+        borderLeft: `2px solid ${accentColor}`,
+        borderRadius: '0 9999px 9999px 0',
+      }
     : undefined
 
   return (
@@ -37,7 +45,8 @@ export default function Chip({
       className={[
         'inline-flex items-center gap-1.5 rounded-full',
         SIZE[size],
-        themeClass,
+        baseClass,
+        accentColor ? '' : plainBg,
         accentColor ? 'rounded-l-sm' : '',
         className,
       ]

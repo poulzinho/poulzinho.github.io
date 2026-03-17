@@ -8,12 +8,14 @@ export type RowSpan = 1 | 2 | 3
 
 interface BentoCardProps {
   children: ReactNode
-  colSpan?: ColSpan        // lg: desktop
-  rowSpan?: RowSpan        // lg: desktop
-  tabletColSpan?: ColSpan  // md: override (defaults to colSpan, capped at 2)
-  tabletRowSpan?: RowSpan  // md: override (defaults to rowSpan)
+  colSpan?: ColSpan // lg: desktop
+  rowSpan?: RowSpan // lg: desktop
+  tabletColSpan?: ColSpan // md: override (defaults to colSpan, capped at 2)
+  tabletRowSpan?: RowSpan // md: override (defaults to rowSpan)
   variant?: BentoVariant
   label?: string
+  /** Remove default padding — use when children fill the card edge-to-edge */
+  noPadding?: boolean
   className?: string
 }
 
@@ -49,28 +51,58 @@ const ROW_SPAN_MD: Record<RowSpan, string> = {
   3: 'md:row-span-2',
 }
 
-const SUN: Record<BentoVariant, { bg: string; border: string; padding: string }> = {
-  default: { bg: COLORS.sunCream,   border: 'ring-1 ring-black/8',  padding: 'p-6' },
-  accent:  { bg: COLORS.sunPeach,   border: 'ring-1 ring-black/10', padding: 'p-6' },
-  hero:    { bg: COLORS.sunPinkMed, border: 'ring-1 ring-black/10', padding: 'p-8' },
+const SUN: Record<
+  BentoVariant,
+  { bg: string; border: string; padding: string }
+> = {
+  default: {
+    bg: COLORS.sunCream,
+    border: 'ring-1 ring-black/8',
+    padding: 'p-6',
+  },
+  accent: {
+    bg: COLORS.sunPeach,
+    border: 'ring-1 ring-black/10',
+    padding: 'p-6',
+  },
+  hero: {
+    bg: COLORS.sunPinkMed,
+    border: 'ring-1 ring-black/10',
+    padding: 'p-8',
+  },
 }
 
-const MOON: Record<BentoVariant, { bg: string; border: string; padding: string }> = {
-  default: { bg: COLORS.moonCard,  border: 'ring-1 ring-white/10', padding: 'p-6' },
-  accent:  { bg: COLORS.moonTeal,  border: 'ring-1 ring-white/10', padding: 'p-6' },
-  hero:    { bg: COLORS.waveDeep3, border: 'ring-1 ring-white/10', padding: 'p-8' },
+const MOON: Record<
+  BentoVariant,
+  { bg: string; border: string; padding: string }
+> = {
+  default: {
+    bg: COLORS.moonCard,
+    border: 'ring-1 ring-white/10',
+    padding: 'p-6',
+  },
+  accent: {
+    bg: COLORS.moonTeal,
+    border: 'ring-1 ring-white/10',
+    padding: 'p-6',
+  },
+  hero: {
+    bg: COLORS.waveDeep3,
+    border: 'ring-1 ring-white/10',
+    padding: 'p-8',
+  },
 }
 
 const RADIUS: Record<BentoVariant, string> = {
   default: 'rounded-2xl',
-  accent:  'rounded-2xl',
-  hero:    'rounded-3xl',
+  accent: 'rounded-2xl',
+  hero: 'rounded-3xl',
 }
 
 const MIN_HEIGHT: Record<BentoVariant, string> = {
   default: 'min-h-[160px]',
-  accent:  'min-h-[160px]',
-  hero:    'min-h-[220px]',
+  accent: 'min-h-[160px]',
+  hero: 'min-h-[220px]',
 }
 
 export default function BentoCard({
@@ -81,6 +113,7 @@ export default function BentoCard({
   tabletRowSpan,
   variant = 'default',
   label,
+  noPadding = false,
   className = '',
 }: BentoCardProps) {
   const { theme } = useTheme()
@@ -95,12 +128,14 @@ export default function BentoCard({
     <article
       aria-label={label}
       className={[
-        mdCol, lgCol,
-        mdRow, lgRow,
+        mdCol,
+        lgCol,
+        mdRow,
+        lgRow,
         RADIUS[variant],
         MIN_HEIGHT[variant],
         s.border,
-        s.padding,
+        noPadding ? '' : s.padding,
         'overflow-hidden',
         className,
       ]

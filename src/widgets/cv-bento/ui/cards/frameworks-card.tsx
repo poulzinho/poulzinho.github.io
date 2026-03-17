@@ -1,41 +1,50 @@
 import { useTranslation } from 'react-i18next'
-import { BentoCard, Chip, Divider, Label } from 'shared/ui'
+import { BentoCard, Label } from 'shared/ui'
+import { useTheme } from 'shared/ui/theme/theme-context'
+import { FRAMEWORK_ICONS, SkillGrid } from './skill-icon'
 
-const FRONTEND = [
-  { label: 'React',   accentColor: '#61dafb' },
-  { label: 'Angular', accentColor: '#dd0031' },
-  { label: 'Stencil', accentColor: '#4e54c8' },
-]
-
-const BACKEND = [
-  { label: 'JEE',  accentColor: '#e76f00' },
-  { label: '.NET', accentColor: '#512bd4' },
-]
+const SUN = { label: 'text-gray-500' }
+const MOON = { label: 'text-white/60' }
 
 export default function FrameworksCard() {
   const { t } = useTranslation()
+  const { theme } = useTheme()
+  const s = theme === 'light' ? SUN : MOON
+
+  const groupLabel: Record<string, string> = {
+    Frontend: t('cv_frameworks_frontend'),
+    Backend: t('cv_frameworks_backend'),
+    Enterprise: 'Enterprise',
+  }
 
   return (
-    <BentoCard colSpan={2} rowSpan={1} variant='accent' label={t('cv_frameworks_title')}>
-      <div className='flex h-full flex-col gap-3'>
-        <Label as='h3' muted>{t('cv_frameworks_title')}</Label>
-        <div className='flex flex-col gap-2'>
-          <Label as='span' muted>{t('cv_frameworks_frontend')}</Label>
-          <div className='flex flex-wrap gap-1.5'>
-            {FRONTEND.map(({ label, accentColor }) => (
-              <Chip key={label} label={label} accentColor={accentColor} size='sm' />
-            ))}
+    <BentoCard
+      colSpan={2}
+      rowSpan={1}
+      variant='default'
+      label={t('cv_frameworks_title')}
+      noPadding
+    >
+      {/* Hidden heading for SEO / a11y */}
+      <h3 className='sr-only'>{t('cv_frameworks_title')}</h3>
+
+      <div className='flex h-full flex-col'>
+        {FRAMEWORK_ICONS.map(group => (
+          <div key={group.group} className='flex min-h-0 flex-1 flex-col'>
+            {/* Group label — slim bar above each icon row */}
+            <div className='px-3 pt-px pb-0 leading-none'>
+              <Label as='span' muted className={`text-[9px] ${s.label}`}>
+                {groupLabel[group.group] ?? group.group}
+              </Label>
+            </div>
+            <SkillGrid
+              icons={group.items}
+              cols={group.items.length}
+              iconSize='h-10 w-10'
+              tilePadding='p-2'
+            />
           </div>
-        </div>
-        <Divider />
-        <div className='flex flex-col gap-2'>
-          <Label as='span' muted>{t('cv_frameworks_backend')}</Label>
-          <div className='flex flex-wrap gap-1.5'>
-            {BACKEND.map(({ label, accentColor }) => (
-              <Chip key={label} label={label} accentColor={accentColor} size='sm' />
-            ))}
-          </div>
-        </div>
+        ))}
       </div>
     </BentoCard>
   )
