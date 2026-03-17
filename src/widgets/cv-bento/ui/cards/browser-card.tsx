@@ -1,6 +1,12 @@
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
-import { useCallback, useLayoutEffect, useRef, useState } from 'react'
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react'
 import { BentoCard } from 'shared/ui'
 import { useTheme } from 'shared/ui/theme/theme-context'
 import {
@@ -240,8 +246,7 @@ export default function BrowserCard() {
     null,
   ])
 
-  const [hovNode, setHovNode] = useState<number | null>(null)
-  const [hovEdge, setHovEdge] = useState<number | null>(null)
+  const [dragNode, setDragNode] = useState<number | null>(null)
 
   // ── Canvas pan (background drag) ───────────────────────────────────────────
   const [panOffset, setPanOffset] = useState<XY>({ x: 0, y: 0 })
@@ -300,6 +305,7 @@ export default function BrowserCard() {
       startX: svgPt.x - tw.x,
       startY: svgPt.y - tw.y,
     }
+    setDragNode(idx)
   }
 
   const onSvgMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
@@ -335,6 +341,7 @@ export default function BrowserCard() {
       const idx = nodeDrag.current.idx
       const tw = nodeTweens.current[idx]
       nodeDrag.current.active = false
+      setDragNode(null)
       gsap.to(tw, {
         x: 0,
         y: 0,
@@ -418,6 +425,16 @@ export default function BrowserCard() {
 
     return () => ctx.revert()
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Kill any in-flight drag/pan snap-back tweens on unmount
+  useEffect(() => {
+    return () => {
+      for (const tw of nodeTweens.current) {
+        gsap.killTweensOf(tw)
+      }
+      gsap.killTweensOf(panTween.current)
+    }
+  }, [])
 
   const arrId = `bw-a-${dark ? 'd' : 'l'}`
   const arrSId = `bw-as-${dark ? 'd' : 'l'}`
@@ -573,8 +590,6 @@ export default function BrowserCard() {
                 ref={el => {
                   edgeRefs.current[0] = el
                 }}
-                onMouseEnter={() => setHovEdge(0)}
-                onMouseLeave={() => setHovEdge(null)}
               >
                 <path
                   d={`M ${edgePositions[0].x1} ${edgePositions[0].y1} L ${edgePositions[0].x2} ${edgePositions[0].y2}`}
@@ -585,8 +600,8 @@ export default function BrowserCard() {
                 <path
                   d={`M ${edgePositions[0].x1} ${edgePositions[0].y1} L ${edgePositions[0].x2} ${edgePositions[0].y2}`}
                   fill='none'
-                  stroke={hovEdge === 0 ? p.neon : p.edge}
-                  strokeWidth={hovEdge === 0 ? 1.8 : 1.2}
+                  stroke={p.edge}
+                  strokeWidth={1.2}
                   strokeDasharray='4.5 3'
                   markerEnd={`url(#${arrId})`}
                 />
@@ -606,8 +621,6 @@ export default function BrowserCard() {
                 ref={el => {
                   edgeRefs.current[1] = el
                 }}
-                onMouseEnter={() => setHovEdge(1)}
-                onMouseLeave={() => setHovEdge(null)}
               >
                 <path
                   d={`M ${edgePositions[1].x1} ${edgePositions[1].y1} L ${edgePositions[1].x2} ${edgePositions[1].y2}`}
@@ -618,8 +631,8 @@ export default function BrowserCard() {
                 <path
                   d={`M ${edgePositions[1].x1} ${edgePositions[1].y1} L ${edgePositions[1].x2} ${edgePositions[1].y2}`}
                   fill='none'
-                  stroke={hovEdge === 1 ? p.neon : p.edge}
-                  strokeWidth={hovEdge === 1 ? 1.8 : 1.2}
+                  stroke={p.edge}
+                  strokeWidth={1.2}
                   strokeDasharray='4.5 3'
                   markerEnd={`url(#${arrId})`}
                 />
@@ -639,8 +652,6 @@ export default function BrowserCard() {
                 ref={el => {
                   edgeRefs.current[2] = el
                 }}
-                onMouseEnter={() => setHovEdge(2)}
-                onMouseLeave={() => setHovEdge(null)}
               >
                 <path
                   d={`M ${edgePositions[2].x1} ${edgePositions[2].y1} L ${edgePositions[2].x2} ${edgePositions[2].y2}`}
@@ -651,8 +662,8 @@ export default function BrowserCard() {
                 <path
                   d={`M ${edgePositions[2].x1} ${edgePositions[2].y1} L ${edgePositions[2].x2} ${edgePositions[2].y2}`}
                   fill='none'
-                  stroke={hovEdge === 2 ? p.neon : p.edge}
-                  strokeWidth={hovEdge === 2 ? 1.8 : 1.2}
+                  stroke={p.edge}
+                  strokeWidth={1.2}
                   strokeDasharray='4.5 3'
                   markerStart={`url(#${arrSId})`}
                   markerEnd={`url(#${arrId})`}
@@ -673,8 +684,6 @@ export default function BrowserCard() {
                 ref={el => {
                   edgeRefs.current[3] = el
                 }}
-                onMouseEnter={() => setHovEdge(3)}
-                onMouseLeave={() => setHovEdge(null)}
               >
                 <path
                   d={`M ${edgePositions[3].x1} ${edgePositions[3].y1} L ${edgePositions[3].x2} ${edgePositions[3].y2}`}
@@ -685,8 +694,8 @@ export default function BrowserCard() {
                 <path
                   d={`M ${edgePositions[3].x1} ${edgePositions[3].y1} L ${edgePositions[3].x2} ${edgePositions[3].y2}`}
                   fill='none'
-                  stroke={hovEdge === 3 ? p.neon : p.edge}
-                  strokeWidth={hovEdge === 3 ? 1.8 : 1.2}
+                  stroke={p.edge}
+                  strokeWidth={1.2}
                   strokeDasharray='4.5 3'
                   markerEnd={`url(#${arrId})`}
                 />
@@ -706,8 +715,6 @@ export default function BrowserCard() {
                 ref={el => {
                   edgeRefs.current[4] = el
                 }}
-                onMouseEnter={() => setHovEdge(4)}
-                onMouseLeave={() => setHovEdge(null)}
               >
                 <path
                   d={`M ${edgePositions[4].x1} ${edgePositions[4].y1} L ${edgePositions[4].x2} ${edgePositions[4].y2}`}
@@ -718,8 +725,8 @@ export default function BrowserCard() {
                 <path
                   d={`M ${edgePositions[4].x1} ${edgePositions[4].y1} L ${edgePositions[4].x2} ${edgePositions[4].y2}`}
                   fill='none'
-                  stroke={hovEdge === 4 ? p.neon : p.edge}
-                  strokeWidth={hovEdge === 4 ? 1.8 : 1.2}
+                  stroke={p.edge}
+                  strokeWidth={1.2}
                   strokeDasharray='4.5 3'
                   markerEnd={`url(#${arrId})`}
                 />
@@ -744,8 +751,6 @@ export default function BrowserCard() {
                 transform={`translate(${nodeOffsets[0].x},${nodeOffsets[0].y})`}
                 style={{ cursor: 'grab' }}
                 onMouseDown={e => onNodeMouseDown(e, 0)}
-                onMouseEnter={() => setHovNode(0)}
-                onMouseLeave={() => setHovNode(null)}
               >
                 <rect
                   x={175}
@@ -754,8 +759,8 @@ export default function BrowserCard() {
                   height={42}
                   rx={8}
                   fill={p.nodeBg}
-                  stroke={hovNode === 0 ? p.neon : p.nodeBorder}
-                  strokeWidth={hovNode === 0 ? 1.5 : 0.75}
+                  stroke={dragNode === 0 ? p.neon : p.nodeBorder}
+                  strokeWidth={dragNode === 0 ? 1.5 : 0.75}
                 />
                 <circle
                   cx={203}
@@ -793,8 +798,6 @@ export default function BrowserCard() {
                 transform={`translate(${nodeOffsets[1].x},${nodeOffsets[1].y})`}
                 style={{ cursor: 'grab' }}
                 onMouseDown={e => onNodeMouseDown(e, 1)}
-                onMouseEnter={() => setHovNode(1)}
-                onMouseLeave={() => setHovNode(null)}
               >
                 <rect
                   x={30}
@@ -803,8 +806,8 @@ export default function BrowserCard() {
                   height={82}
                   rx={8}
                   fill={p.nodeBg}
-                  stroke={hovNode === 1 ? p.neon : p.nodeBorder}
-                  strokeWidth={hovNode === 1 ? 1.5 : 0.75}
+                  stroke={dragNode === 1 ? p.neon : p.nodeBorder}
+                  strokeWidth={dragNode === 1 ? 1.5 : 0.75}
                 />
                 <IconRow
                   icons={FRONTEND_ICONS}
@@ -841,8 +844,6 @@ export default function BrowserCard() {
                 transform={`translate(${nodeOffsets[2].x},${nodeOffsets[2].y})`}
                 style={{ cursor: 'grab' }}
                 onMouseDown={e => onNodeMouseDown(e, 2)}
-                onMouseEnter={() => setHovNode(2)}
-                onMouseLeave={() => setHovNode(null)}
               >
                 <rect
                   x={12}
@@ -851,8 +852,8 @@ export default function BrowserCard() {
                   height={82}
                   rx={8}
                   fill={p.nodeBg}
-                  stroke={hovNode === 2 ? p.neon : p.nodeBorder}
-                  strokeWidth={hovNode === 2 ? 1.5 : 0.75}
+                  stroke={dragNode === 2 ? p.neon : p.nodeBorder}
+                  strokeWidth={dragNode === 2 ? 1.5 : 0.75}
                 />
                 <IconRow
                   icons={BACKEND_ICONS}
@@ -889,8 +890,6 @@ export default function BrowserCard() {
                 transform={`translate(${nodeOffsets[3].x},${nodeOffsets[3].y})`}
                 style={{ cursor: 'grab' }}
                 onMouseDown={e => onNodeMouseDown(e, 3)}
-                onMouseEnter={() => setHovNode(3)}
-                onMouseLeave={() => setHovNode(null)}
               >
                 <rect
                   x={258}
@@ -899,8 +898,8 @@ export default function BrowserCard() {
                   height={82}
                   rx={8}
                   fill={p.nodeBg}
-                  stroke={hovNode === 3 ? p.neon : p.nodeBorder}
-                  strokeWidth={hovNode === 3 ? 1.5 : 0.75}
+                  stroke={dragNode === 3 ? p.neon : p.nodeBorder}
+                  strokeWidth={dragNode === 3 ? 1.5 : 0.75}
                 />
                 <IconRow icons={DB_ICONS} cx={353} y={206} fill={p.iconFill} />
                 <text
@@ -932,8 +931,6 @@ export default function BrowserCard() {
                 transform={`translate(${nodeOffsets[4].x},${nodeOffsets[4].y})`}
                 style={{ cursor: 'grab' }}
                 onMouseDown={e => onNodeMouseDown(e, 4)}
-                onMouseEnter={() => setHovNode(4)}
-                onMouseLeave={() => setHovNode(null)}
               >
                 <rect
                   x={30}
@@ -942,8 +939,8 @@ export default function BrowserCard() {
                   height={74}
                   rx={8}
                   fill={p.nodeBg}
-                  stroke={hovNode === 4 ? p.neon : p.nodeBorder}
-                  strokeWidth={hovNode === 4 ? 1.5 : 0.75}
+                  stroke={dragNode === 4 ? p.neon : p.nodeBorder}
+                  strokeWidth={dragNode === 4 ? 1.5 : 0.75}
                 />
                 <IconRow
                   icons={INFRA_ICONS}

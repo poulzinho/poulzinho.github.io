@@ -234,6 +234,16 @@ export default function BarChartCard() {
     return () => ro.disconnect()
   }, [draw])
 
+  // Cancel any in-flight hover transition RAF on unmount
+  useEffect(() => {
+    return () => {
+      if (cancelHoverRef.current) {
+        cancelHoverRef.current()
+        cancelHoverRef.current = null
+      }
+    }
+  }, [])
+
   // Kick off draw-in animation whenever spec or colors change
   useEffect(() => {
     const cancel = startAnimation(animRef.current, progress => {

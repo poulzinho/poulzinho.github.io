@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { type ThemeColors, type TooltipData } from './chart-engine'
 
@@ -6,6 +6,7 @@ import { type ThemeColors, type TooltipData } from './chart-engine'
 
 const FADE_IN_MS = 140
 const FADE_OUT_MS = 200
+const VIEWPORT_MARGIN = 8 // minimum px from any viewport edge
 
 // ─── Component ───────────────────────────────────────────────────────────────
 //
@@ -20,7 +21,10 @@ const FADE_OUT_MS = 200
 //   mounted      — kept true until FADE_OUT_MS after data goes null, so the
 //                  portal stays in the DOM while the fade-out plays.
 //
-// No setTimeout deferred setState, no rAF, no stale-content flicker.
+// Viewport clamping:
+//   After each render where content changes, we measure the tooltip's bounding
+//   rect and nudge left/top so that the tooltip never overflows the viewport.
+//   This handles left-edge, right-edge, top-edge, and bottom-edge overflow.
 
 export default function ChartTooltip({
   data,
@@ -30,26 +34,23 @@ export default function ChartTooltip({
   colors: ThemeColors
 }) {
   // ── Derived state (synchronous, during render) ───────────────────────────────
-  // Canonical React pattern for deriving state from props without an effect:
-  // track what we last saw and call setState during render when it changes.
-  // React will immediately re-render with the updated state before painting,
-  // so there is never a frame where portalState is stale relative to data.
-  // See: react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes
   const [portalState, setPortalState] = useState<TooltipData | null>(data)
   const [mounted, setMounted] = useState(data !== null)
   const [prevData, setPrevData] = useState<TooltipData | null>(data)
 
+  // Clamped position offsets — applied after measuring the tooltip
+  const [clampedPos, setClampedPos] = useState<{ left: number; top: number }>({
+    left: 0,
+    top: 0,
+  })
+  const tooltipRef = useRef<HTMLDivElement>(null)
+
   if (data !== prevData) {
     setPrevData(data)
     if (data !== null) {
-      // New non-null data: update content and ensure portal is mounted —
-      // both in a single synchronous render pass, no flicker.
       setPortalState(data)
       setMounted(true)
     }
-    // data === null case: mounted stays true; the effect schedules the unmount
-    // after the fade-out completes. portalState is intentionally left stale so
-    // content stays readable during the fade-out.
   }
 
   // ── Visibility ───────────────────────────────────────────────────────────────
@@ -59,15 +60,11 @@ export default function ChartTooltip({
 
   useEffect(() => {
     if (data !== null) {
-      // Cancel any pending unmount from a previous hide cycle.
-      // No setState needed here — portalState is already updated synchronously
-      // in render via the derived-state block, and mounted is already true.
       if (hideTimerRef.current !== null) {
         clearTimeout(hideTimerRef.current)
         hideTimerRef.current = null
       }
     } else {
-      // Keep portal mounted until fade-out finishes, then unmount.
       hideTimerRef.current = setTimeout(() => {
         setMounted(false)
         hideTimerRef.current = null
@@ -82,6 +79,54 @@ export default function ChartTooltip({
     }
   }, [data])
 
+  // ── Viewport clamping ────────────────────────────────────────────────────────
+  // After the tooltip renders (or data changes), measure it and clamp.
+  const clamp = useCallback(() => {
+    const el = tooltipRef.current
+    if (!el || !portalState) return
+
+    const anchorX = portalState.x
+    const anchorY = portalState.y
+
+    // Default: centered above the anchor point
+    const tooltipW = el.offsetWidth
+    const tooltipH = el.offsetHeight
+    const gap = 14 // vertical gap above anchor
+
+    let left = anchorX - tooltipW / 2
+    let top = anchorY - tooltipH - gap
+
+    const vw = window.innerWidth
+    const vh = window.innerHeight
+
+    // Clamp horizontal
+    if (left < VIEWPORT_MARGIN) {
+      left = VIEWPORT_MARGIN
+    } else if (left + tooltipW > vw - VIEWPORT_MARGIN) {
+      left = vw - VIEWPORT_MARGIN - tooltipW
+    }
+
+    // If tooltip overflows top, flip below the anchor
+    if (top < VIEWPORT_MARGIN) {
+      top = anchorY + gap
+    }
+
+    // Clamp bottom (if flipped and still overflows)
+    if (top + tooltipH > vh - VIEWPORT_MARGIN) {
+      top = vh - VIEWPORT_MARGIN - tooltipH
+    }
+
+    setClampedPos({ left, top })
+  }, [portalState])
+
+  useEffect(() => {
+    if (mounted && portalState) {
+      // Use rAF to measure after browser has laid out the portal content
+      const id = requestAnimationFrame(clamp)
+      return () => cancelAnimationFrame(id)
+    }
+  }, [mounted, portalState, clamp])
+
   if (!mounted || portalState === null) return null
 
   const single =
@@ -89,11 +134,11 @@ export default function ChartTooltip({
 
   return createPortal(
     <div
+      ref={tooltipRef}
       className='pointer-events-none fixed z-9999 max-w-70 rounded-xl border px-4 py-3 shadow-lg'
       style={{
-        left: portalState.x,
-        top: portalState.y,
-        transform: 'translate(-50%, -100%) translateY(-14px)',
+        left: clampedPos.left,
+        top: clampedPos.top,
         opacity: visible ? 1 : 0,
         transition: visible
           ? `opacity ${FADE_IN_MS}ms ease-out ${Math.round(FADE_IN_MS * 0.4)}ms`

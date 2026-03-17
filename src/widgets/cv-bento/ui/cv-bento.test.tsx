@@ -7,6 +7,14 @@ vi.mock('gsap', () => ({
   default: {
     registerPlugin: vi.fn(),
     from: vi.fn(),
+    to: vi.fn(),
+    set: vi.fn(),
+    killTweensOf: vi.fn(),
+    timeline: vi.fn(() => ({
+      to: vi.fn().mockReturnThis(),
+      fromTo: vi.fn().mockReturnThis(),
+      kill: vi.fn(),
+    })),
     context: vi.fn(() => ({ revert: vi.fn() })),
   },
 }))
@@ -42,7 +50,9 @@ describe('CvBento', () => {
   it('renders duality caption', () => {
     renderWithTheme()
     // appears twice: label and paragraph
-    expect(screen.getAllByText('"cv_duality_caption"').length).toBeGreaterThanOrEqual(1)
+    expect(
+      screen.getAllByText('"cv_duality_caption"').length
+    ).toBeGreaterThanOrEqual(1)
   })
 
   it('renders 7 industry chips', () => {

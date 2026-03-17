@@ -1,5 +1,5 @@
 import gsap from 'gsap'
-import { useCallback, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import duckImg from 'shared/assets/images/duck.png'
 import { BentoCard } from 'shared/ui'
 import { useTheme } from 'shared/ui/theme/theme-context'
@@ -27,6 +27,16 @@ export default function DuckCard() {
   const textRef = useRef<HTMLSpanElement>(null)
   const timelineRef = useRef<gsap.core.Timeline | null>(null)
   const quackIndexRef = useRef(0)
+
+  // Kill any in-flight GSAP timeline on unmount to prevent setState on dead component
+  useEffect(() => {
+    return () => {
+      if (timelineRef.current) {
+        timelineRef.current.kill()
+        timelineRef.current = null
+      }
+    }
+  }, [])
 
   const handleClick = useCallback(() => {
     // Kill any running animation

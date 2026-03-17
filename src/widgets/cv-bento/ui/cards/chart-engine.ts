@@ -99,6 +99,41 @@ export const MOON: ThemeColors = {
 
 export const PADDING = { top: 28, right: 20, bottom: 54, left: 56 }
 
+/** Measure the pixel width of a string at the x-axis label font. */
+function measureXLabel(ctx: CanvasRenderingContext2D, text: string): number {
+  ctx.save()
+  ctx.font = '10px system-ui, -apple-system, sans-serif'
+  const w = ctx.measureText(text).width
+  ctx.restore()
+  return w
+}
+
+/** Decide whether x-axis labels should be rotated, and compute the
+ *  dynamic bottom padding accordingly. */
+export function computeXLabelLayout(
+  ctx: CanvasRenderingContext2D | null,
+  xLabels: string[],
+  plotWidth: number
+): { rotateXLabels: boolean; bottomPadding: number } {
+  const GAP = 6 // minimum horizontal gap between labels
+  const n = xLabels.length
+  if (n === 0 || !ctx)
+    return { rotateXLabels: false, bottomPadding: PADDING.bottom }
+
+  const maxLabelWidth = Math.max(...xLabels.map(l => measureXLabel(ctx, l)))
+  const availablePerLabel = plotWidth / n
+
+  if (maxLabelWidth + GAP <= availablePerLabel) {
+    return { rotateXLabels: false, bottomPadding: PADDING.bottom }
+  }
+
+  // Rotated: label contributes sin(45°) * width vertically + some spacing
+  const RAD = Math.PI / 4
+  const rotatedHeight = Math.ceil(maxLabelWidth * Math.sin(RAD)) + 18 // 18 = tick offset + axis title
+  const dynamicBottom = Math.max(PADDING.bottom, rotatedHeight + 24)
+  return { rotateXLabels: true, bottomPadding: dynamicBottom }
+}
+
 export interface Scales {
   xLabels: string[]
   xPositions: number[]
@@ -111,6 +146,8 @@ export interface Scales {
   plotBottom: number
   groups: Map<string, { x: string; y: number; meta?: string }[]>
   categories: string[]
+  /** Whether x-axis labels should be drawn at 45° to avoid collision. */
+  rotateXLabels: boolean
 }
 
 // ─── Easing ──────────────────────────────────────────────────────────────────────
@@ -208,7 +245,13 @@ export function startHoverTransition(
 
 // ─── computeScales ───────────────────────────────────────────────────────────────
 
-export function computeScales(spec: ChartSpec, w: number, h: number): Scales {
+export function computeScales(
+  spec: ChartSpec,
+  w: number,
+  h: number,
+  rotateXLabels = false,
+  bottomPadding = PADDING.bottom
+): Scales {
   const xField = spec.encoding.x.field
   const yField = spec.encoding.y.field
   const colorField = spec.encoding.color?.field
@@ -216,7 +259,7 @@ export function computeScales(spec: ChartSpec, w: number, h: number): Scales {
   const plotLeft = PADDING.left
   const plotRight = w - PADDING.right
   const plotTop = PADDING.top
-  const plotBottom = h - PADDING.bottom
+  const plotBottom = h - bottomPadding
 
   // Unique x labels in order of appearance
   const xLabels = [...new Set(spec.data.values.map(d => String(d[xField])))]
@@ -307,6 +350,7 @@ export function computeScales(spec: ChartSpec, w: number, h: number): Scales {
     plotBottom,
     groups,
     categories,
+    rotateXLabels,
   }
 }
 
@@ -452,25 +496,43 @@ export function drawGrid(
   ctx.stroke()
 
   // x-axis tick labels
-  ctx.textAlign = 'center'
-  ctx.textBaseline = 'top'
   ctx.fillStyle = colors.axisText
   ctx.font = '10px system-ui, -apple-system, sans-serif'
 
-  for (let i = 0; i < scales.xLabels.length; i++) {
-    ctx.fillText(scales.xLabels[i], scales.xPositions[i], plotBottom + 8)
+  if (scales.rotateXLabels) {
+    // Rotated labels — 45° counter-clockwise, anchored at top-right
+    ctx.textAlign = 'right'
+    ctx.textBaseline = 'middle'
+    const RAD = Math.PI / 4
+    for (let i = 0; i < scales.xLabels.length; i++) {
+      ctx.save()
+      ctx.translate(scales.xPositions[i], plotBottom + 8)
+      ctx.rotate(-RAD)
+      ctx.fillText(scales.xLabels[i], 0, 0)
+      ctx.restore()
+    }
+  } else {
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'top'
+    for (let i = 0; i < scales.xLabels.length; i++) {
+      ctx.fillText(scales.xLabels[i], scales.xPositions[i], plotBottom + 8)
+    }
   }
 
-  // x-axis title
+  // x-axis title — pushed down further when labels are rotated
+  const axisTitleY = scales.rotateXLabels
+    ? plotBottom +
+      14 +
+      Math.ceil(
+        Math.max(...scales.xLabels.map(l => ctx.measureText(l).width)) *
+          Math.sin(Math.PI / 4)
+      )
+    : plotBottom + 24
   ctx.font = '11px system-ui, -apple-system, sans-serif'
   ctx.textAlign = 'center'
   ctx.textBaseline = 'top'
   ctx.fillStyle = colors.axisText
-  ctx.fillText(
-    spec.encoding.x.field,
-    (plotLeft + plotRight) / 2,
-    plotBottom + 24
-  )
+  ctx.fillText(spec.encoding.x.field, (plotLeft + plotRight) / 2, axisTitleY)
 
   // y-axis title (rotated)
   ctx.save()
@@ -985,7 +1047,17 @@ export function renderChart(
 
   const easedProgress = easeOutCubic(Math.min(progress, 1))
 
-  const scales = computeScales(spec, w, h)
+  // Pre-compute x labels to decide if rotation is needed
+  const xField = spec.encoding.x.field
+  const xLabels = [...new Set(spec.data.values.map(d => String(d[xField])))]
+  const plotWidth = w - PADDING.left - PADDING.right
+  const { rotateXLabels, bottomPadding } = computeXLabelLayout(
+    ctx,
+    xLabels,
+    plotWidth
+  )
+
+  const scales = computeScales(spec, w, h, rotateXLabels, bottomPadding)
 
   drawGrid(ctx, scales, colors, spec)
 
